@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+<link rel="stylesheet" type="text/css" href="../../css/english/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/core.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/responsive.css" />
+<!-- <link rel="stylesheet" type="text/css" href="../../css/english/index.css" /> -->
+<style type="text/css">
+#loadingimg{
+            display: block;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/gif-load.gif') 50% 50% no-repeat rgba(192, 192, 192, 0.5);
+        }
+</style>
+<title>Estays :: Summary</title>
+</head>
+
+<body>
+<div id="loadingimg" style="display:none">
+        </div>
+<div id="outer"><div class="fullWidth">
+  <div class="title-text top-fixed">
+    <div class="back"><a onclick="backButton();" href="javascript:void(0)"><img src="../../img/backarrow.png" alt=""> Back</a></div>
+    <h4>Registration</h4>
+    <a href="javascript:void(0)" class="navbtn"><img src="../../img/navigator.png" alt=""> </a>
+      <div class="navOuter">
+        <h6>Currency</h6>
+        <div class="radioButtons01">
+          <input type="radio" id="radio01" name="radio" />
+          <label onclick="changecurrencySR();" for="radio01"><span></span>SR</label>
+        </div>
+        <div class="radioButtons01">
+          <input type="radio" id="radio02" name="radio" />
+          <label onclick="changecurrencyUSD();" for="radio02"><span></span>USD</label>
+        </div>
+        
+        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">Settings</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">Logout</a> </div>
+      </div>
+    
+  </div>
+</div>
+<div class="top-gap"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="headtexthead">Please input following information</div>
+        <div class="blue-top">Username</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="registration_user_name">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Email address</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="registration_user_email">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Password</div>
+        <div class="white-box">
+          <input type="password" class="greyBox" id="registration_password">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Confirm Password</div>
+        <div class="white-box">
+          <input type="password" class="greyBox" id="registration_confirm_password">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Phone</div>
+        <div class="white-box">
+          <input type="number" class="greyBox" id="registration_phone">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 text-center register-button margtop margbot-inner"> <a href="javascript:void(0)"><img onclick="validationCheck();" src="../../img/submit.png" alt="#"></a> </div>
+  </div>
+</div>
+<div class="botm-gap"></div>
+<div class="fullWidth">
+  <div class="bottomLinks"> <a class="active"  href="javascript:void(0)"> <span class="searchimg"></span> <br>
+    Search</a> <a onclick="openBookingFoot();" href="javascript:void(0)"><span class="Bookinging"></span> <br>
+    Bookings</a> <a onclick="bookingFoot();" href="javascript:void(0)"><span class="Notificationimg"><span style="display: none;" class="notificationnos" id="notification_count"></span></span> <br>
+    Notifications</a> <a onclick="openProfileFoot();" href="javascript:void(0)"><span class="Profileimg"></span> <br>
+    Profile</a> </div>
+</div>
+<script type="text/javascript" src="../../cordova.js"></script>
+<script type="text/javascript" src="../../js/english/jquery.min.js"></script> 
+<script type="text/javascript" src="../../js/english/jquery.nicefileinput.js"></script> 
+<script type="text/javascript" src="../../js/english/bootstrap.js"></script> 
+<script type="text/javascript" src="../../js/english/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/english/core.js"></script> 
+<script type="text/javascript" src="../../js/english/inapp-registration.js"></script>
+<script>
+       $(document).ready(function(){
+		$("input[type=file]").nicefileinput();
+});
+    
+    </script></div>
+</body>
+</html>

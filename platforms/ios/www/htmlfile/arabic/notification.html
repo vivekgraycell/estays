@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+<link rel="stylesheet" type="text/css" href="../../css/arabic/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/core.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/responsive.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/index.css" />
+<style type="text/css">
+#loadingimg{
+            display: block;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/gif-load.gif') 50% 50% no-repeat rgba(192, 192, 192, 0.5);
+        }
+</style>
+<title>Estays :: Notification</title>
+</head>
+
+<body>
+<div id="loadingimg" style="display:none">
+        </div>
+<div id="outer">
+  <div class="fullWidth">
+    <div class="title-text top-fixed">
+      <div class="back"><a onclick="backButton();" href="javascript:void(0)"><img src="../../img/backarrow.png" alt=""> الى الخلف</a></div>
+      <h4>إعلام</h4>
+      <a href="javascript:void(0)" class="navbtn"><img src="../../img/navigator.png" alt=""> </a>
+      <div class="navOuter">
+        <h6>عملة</h6>
+        <div class="radioButtons01">
+          <input type="radio" id="radio01" name="radio" data-role="none"/>
+          <label onclick="changecurrencySR();" for="radio01"><span></span>ريال سعودى</label>
+        </div>
+        <div class="radioButtons01">
+          <input type="radio" id="radio02" name="radio" data-role="none"/>
+          <label onclick="changecurrencyUSD();" for="radio02"><span></span>دولار أمريكي</label>
+        </div>
+        
+        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
+      </div>
+    </div>
+  </div>
+  <div class="top-gap"></div>
+  <div class="fullWidth yellowblock newmargin0 margin0 padding0">
+    <div class="border-bottom" id="notification_top_row" style="display: none;">
+      <div class="col-xs-12">
+        <div class="left"><span>تاريخ</span> <span><strong id="notificDate"></strong></span></div>
+        <div class="right"><span>نوع الغرفة</span> <span><strong id="ntfication_room_type"></strong></span></div>
+      </div>
+    </div>
+    <div class="border-bottom" id="notification_second_row" style="display: none;">
+      <div class="col-xs-12">
+        <div class="left"><span>عدد الغرف</span> <span><strong id="num_rooms"></strong></span></div>
+        <div class="right"><span>نوع الفندق</span> <span><strong id="ntfication_hotel_type"></strong></span></div>
+      </div>
+    </div>
+    <div class="col-xs-12" id="notification_timer_div" style="display: none;">
+      <div class="counter">
+        <h3>الوقت المتبقي</h3>
+        <div id="countdown"> 00:30:00 </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+    <div data-role="content">
+                <!-- <ul id="hotelList" data-role="listview" data-filter="true"></ul> -->
+                <ul id="notificationlisthotel" data-role="listview"></ul>
+            </div> 
+            
+            <div style='font-size:18px; margin-top:40px;color: #aeaeae; text-align: center;width: 100%;' id="emptylistTV"></div>
+      <!-- <div class="boderBottom notifiationB">
+        <div class="col-xs-12">
+          <div class="image"><img src="../../img/img01.jpg" alt=""></div>
+          <div class="desc">
+          <div class="title">جيمس</div>
+          <div class="text">أبجد هوز دولور الجلوس امات، خامسة <شمال شرق> الشركة المصرية للاتصالات وقت الخنزيرية السجن.</div>
+        </div>
+          <div class="linkarrow"><a href="javascript:void(0)"><img src="../../img/book.png" alt=""></a></div>
+        </div>
+      </div> -->
+      <!-- <div class="boderBottom notifiationB">
+        <div class="col-xs-12">
+          <div class="image"><img src="../../img/img02.jpg" alt=""></div>
+          <div class="desc">
+          <div class="title">أوستن فندق</div>
+          <div class="text">أبجد هوز دولور الجلوس امات، خامسة <شمال شرق> الشركة المصرية للاتصالات وقت الخنزيرية السجن.</div>
+        </div>
+          <div class="linkarrow"><a href="javascript:void(0)"><img src="../../img/book.png" alt=""></a></div>
+        </div>
+      </div> -->
+      <!-- <div class="boderBottom notifiationB">
+        <div class="col-xs-12">
+          <div class="image"><img src="../../img/img03.jpg" alt=""></div>
+          <div class="desc">
+          <div class="title">فندق رامي</div>
+          <div class="text">أبجد هوز دولور الجلوس امات، خامسة <شمال شرق> الشركة المصرية للاتصالات وقت الخنزيرية السجن.</div>
+        </div>
+          <div class="linkarrow"><a href="javascript:void(0)"><img src="../../img/book.png" alt=""></a></div>
+        </div>
+      </div> -->
+      <!-- <div class="boderBottom notifiationB">
+        <div class="col-xs-12">
+          <div class="image"><img src="../../img/img04.jpg" alt=""></div>
+           <div class="desc">
+          <div class="title">شانغريلا</div>
+          <div class="text">أبجد هوز دولور الجلوس امات، خامسة <شمال شرق> الشركة المصرية للاتصالات وقت الخنزيرية السجن.</div>
+        </div>
+          <div class="linkarrow"><a href="javascript:void(0)"><img src="../../img/book.png" alt=""></a></div>
+        </div>
+      </div> -->
+      <!-- <div class="boderBottom notifiationB">
+        <div class="col-xs-12">
+          <div class="image"><img src="../../img/img05.jpg" alt=""></div>
+          <div class="desc">
+          <div class="title">ويندهام</div>
+          <div class="text">أبجد هوز دولور الجلوس امات، خامسة <شمال شرق> الشركة المصرية للاتصالات وقت الخنزيرية السجن.</div>
+        </div>
+          <div class="linkarrow"><a href="javascript:void(0)"><img src="../../img/book.png" alt=""></a></div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="fullWidth">
+  
+  
+  <div class="bottomLinks"> <a onclick="openSearchFoot();" href="javascript:void(0)"> <span class="searchimg"></span> <br>
+    بحث</a> <a onclick="bookingFoot();" href="javascript:void(0)"><span class="Bookinging"></span> <br>
+    حجوزات</a> <a class="active"  href="javascript:void(0)"><span class="Notificationimg"><span style="display: none;" class="notificationnos" id="notification_count"></span></span> <br>
+    الإشعارات</a> <a onclick="openProfileFoot();" href="javascript:void(0)"><span class="Profileimg"></span> <br>
+    الملف الشخصي</a> </div>
+  
+   
+  </div>
+  <script type="text/javascript" src="../../cordova.js"></script>
+ <!--  <script type="text/javascript" src="../../js/arabic/jquery.min.js"></script>  -->
+ <script type="text/javascript" src="../../js/arabic/jquery-1.12.2.min.js"></script> 
+  <script type="text/javascript" src="../../js/arabic/jquery.mobile-1.4.5.min.js"></script>
+<!--   <script type="text/javascript" src="../../js/arabic/bootstrap.js"></script>  -->
+  <script type="text/javascript" src="../../js/arabic/bootstrap.min.js"></script> 
+<!--   <script type="text/javascript" src="../../js/arabic/index.js"></script> --> 
+  <script type="text/javascript" src="../../js/arabic/core.js"></script> 
+  <script type="text/javascript" src="../../js/arabic/notification.js"></script>
+<!--   <script type="text/javascript">
+        app.initialize();
+    </script>  -->
+</div>
+</body>
+</html>

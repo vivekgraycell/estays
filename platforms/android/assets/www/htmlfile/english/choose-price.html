@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+<link rel="stylesheet" type="text/css" href="../../css/english/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/core.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/responsive.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/index.css" />
+<style type="text/css">
+#loadingimg{
+            display: block;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/gif-load.gif') 50% 50% no-repeat rgba(192, 192, 192, 0.5);
+        }
+</style>
+<title>Estays :: Choose price</title>
+</head>
+
+<body>
+<div id="loadingimg" style="display:none">
+        </div>
+<div class="fullWidth">
+  <div class="title-text top-fixed">
+    <div class="back"><a onclick="backButton();" href="javascript:void(0)"><img src="../../img/backarrow.png" alt=""> Back</a></div>
+    <h4>Make a bid</h4>
+    <a href="javascript:void(0)" class="navbtn"><img src="../../img/navigator.png" alt=""> </a>
+      <div class="navOuter">
+        <h6>Currency</h6>
+        <div class="radioButtons01">
+          <input type="radio" id="radio01" name="radio" />
+          <label onclick="changecurrencySR();" for="radio01"><span></span>SR</label>
+        </div>
+        <div class="radioButtons01">
+          <input type="radio" id="radio02" name="radio" />
+          <label onclick="changecurrencyUSD();" for="radio02"><span></span>USD</label>
+        </div>
+        
+        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">Settings</a> <a onclick="logoutUser();" href="javascript:void(0)">Logout</a> </div>
+      </div>
+  </div>
+</div>
+<div class="top-gap"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="blueWhite-main " >
+        <div class="blue-top">Make a bid</div>
+        <div class="white-box bid">
+          <div class="heading">You have chosen a 5 star hotel</div>
+        </div>
+      </div>
+      <div class="twoCol">
+        <div class="col-xs-6 full">
+          <div class="infoText"> Range from <br>
+            <span id="minpricerng"></span></div><!-- SR 300 -->
+        </div>
+        <div class="col-xs-6 full">
+          <div class="infoText"> To <br>
+            <span id="maxpricerng"></span></div><!-- SR 1000 -->
+        </div>
+      </div>
+      <div class="white-box spacetop">
+        <div class="heading">Enter your price range</div>
+        <input type="number" class="greyBox" id="choosepriceval">
+      </div>
+    </div>
+    <div class="col-xs-12 text-center register-button margtop margbot-inner "> <a href="javascript:void(0)"><img onclick="registeruser();" alt="#" src="../../img/next.png"></a> </div>
+    <div></div>
+  </div>
+</div>
+<div class="fullWidth">
+  <div class="bottomLinks"> <a class="active" href="javascript:void(0)"> <span class="searchimg"></span> <br>
+    Search</a> <a onclick="openBookingFoot();" href="javascript:void(0)"><span class="Bookinging"></span> <br>
+    Bookings</a> <a onclick="bookingFoot();" href="javascript:void(0)"><span class="Notificationimg"></span> <br>
+    Notifications</a> <a onclick="openProfileFoot();" href="javascript:void(0)"><span class="Profileimg"></span> <br>
+    Profile</a> </div>
+</div>
+<script type="text/javascript" src="../../cordova.js"></script>
+<script type="text/javascript" src="../../js/english/jquery.min.js"></script> 
+<!-- <script type="text/javascript" src="../../js/english/bootstrap.js"></script>  -->
+<script type="text/javascript" src="../../js/english/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/english/chooseprice.js"></script>
+</body>
+</html>

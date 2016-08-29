@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* CSS Document */
+@media(max-width:1024px){
+	.photo { width:31.5%;}
+	ul.nav li > a , ul.nav li  { font-size:22px;}
+	.linksButtons a { font-size:18px;}
+	.linksButtons a { padding:8px 18px; font-size:18px;}
+}
+@media(max-width:850px){
+	.title , .thead , .theadinfo , .greyBox , .summary span.theadinfo { font-size:17px;}
+	.text { font-size:13px;}
+	.desc { width:55%;}
+	.linkarrow { margin-top:30px;}
+	.spacing { height:70px;}
+	.greyBox { min-height:inherit;}
+	.greyInfo { font-size:17px; padding-top:0px;}
+	a.yellowLink { font-size:16px;}
+	.greyBox.timer { background-size:5%; background-position:98% 3px; padding-right:45px;}
+	.termCondition { font-size:18px;}
+	.caption h1 { font-size:22px;}
+	.caption { font-size:13px;}
+	.caption img { width:9%;}
+	.caption b { padding-top:12px;}
+	.photo { width:31%;}
+	.bar span { width:11%;}
+	.textinfo p { font-size:20px;}
+	.notifiationB .desc { width:50%;}
+	.notifiationB .linkarrow { width:20%;}
+	
+}
+
+@media(max-width:767px){
+.linksButtons{ bottom:100px; top:40px;}
+.margtopExtra{ margin-top:38%;}
+.radioButtons01 input[type="radio"] + label, .navOuter h6{ font-size:20px;}
+.top-gap{ margin-top:60px;}
+.botm-gap{ margin-bottom:60px;}
+}
+
+
+@media(max-width:640px){
+	.register-button img{ margin-bottom:0;}	
+	.register-logo{ margin:50px 0;}
+	.title-text h4 { font-size:20px;}
+	.back { font-size:20px;}
+	.back img , .banner .back img { width:18%;}
+	.margtopExtra { margin-top:35px;}
+	.infoText { padding:0 0 0 15px; font-size:18px;}
+	.infoText span { font-size:20px;}
+	.heading { font-size:20px;}
+	.spacetop , .bid { padding-top:20px;}
+	.bottomLinks a { font-size:14px;}
+	a.editprofile  { font-size:18px; padding:8px 30px;}
+	.profileInfo { padding-top:30px;}
+	.greyBox.timer { background-size:6%; background-position:98% 5px;}
+	.title-text.bannerOuter .back { top:15px;}
+	.photo { width:30%;}
+	.bar span { width:14%;}
+	.bar b { font-size:22px;}
+	.notifiationB .linkarrow {  float:left;}
+	.border-bottom .left , .border-bottom .right { padding-left:15px; padding-right:15px;}
+	.border-bottom span { font-size:18px;}
+	.border-bottom span strong { font-size:20px;}
+	.navbtn { top:20px; right:5px;}
+	.navbtn > img { width:70%;}
+	
+	
+}
+
+@media(max-width:550px){
+
+	.white-box{ padding:30px 10px;}
+	.datepicker{ margin:5px 9px 0 0 !important;}
+	.date{ font-size:24px;}
+	.date span{ font-size:22px;}
+
+}
+
+@media(max-width:480px){
+	.blue-top { font-size:20px;}
+	.select-text { font-size:20px; background-position:right top;}
+	.full { width:100%;}
+	.radioButtons input[type="radio"] + label { font-size:20px;}
+	.radioButtons input[type="radio"] + label span , .radioButtons input[type="radio"]:checked + label span { background-size:68%; margin-right:15px; height:30px; width:42px;}
+	.blueWhite-main , .margtop { margin-top:20px;}
+	.margbot { margin-bottom:35px;}
+	.back { font-size:18px;}
+	.title-text h4 { font-size:18px; padding-left:25px;}
+	.back img { width:18%; margin-right:5px;}
+	.twoCol { padding:0px 0px; background-position: left 50%; background-repeat:repeat-x;}
+	.infoText { padding:15px 0}
+	.bottomLinks a { font-size:11px;}
+	.image { float:none;  height:auto;}
+	.image img { width:50%; margin-right:20px;}
+	.text br { display:none;}
+	.linkarrow { margin-top:25px;}
+	a.editprofile  { font-size:14px; padding:8px 15px; margin-top:40px;}
+	a.yellowLink { font-size:14px; margin-top:0px; margin-bottom:10px;} 
+	.title.margbot { margin-bottom:0px;}
+	.greyBox.timer { background-position:98% 5px;}
+	.caption { bottom:50px;}
+	.photo { width:29%;}
+	.bar span { width:18%;}
+	.bar b { font-size:18px;}
+	.yellowblock { margin:35px 0px;}
+	#countdown { margin-bottom:35px; font-size:34px;}
+	.counter h3 { font-size:18px;}
+	.detailBlock { padding:10px 0px;}
+	.radioButtons { margin-top:15px; padding-bottom:15px;}
+	.back { left:0;}
+	.heading { font-size:17px;}
+	.blue-top { padding:8px 15px;}
+	.yellowblock .counter { margin-top:35px;}
+	.border-bottom .left  { padding-left:0px; padding-right:15px;}
+	.yellowblock.newmargin0 { margin:0px;}
+	.profilepic span { top:35%; right:-24px;}
+	
+	
+}
+
+
+@media(max-width:390px){
+
+	.white-box{ padding:30px 10px;}
+	.datepicker{ margin:-4px 9px 0 0 !important;}
+	.date{ font-size:20px;}
+	.date span{ font-size:16px;}
+
+}
+
+@media(max-width:380px){
+	.caption h1 { padding-bottom:10px;} 
+	.photo { width:29%; margin-right:15px; margin-bottom:15px;}
+	.bar span { width:23%;}
+	.textinfo p { font-size:18px;}
+	.notifiationB .linkarrow { width:25%; margin-top:10px;}
+	.blue-top { font-size:16px;}
+	.border-bottom span { font-size:16px;}
+	.border-bottom span strong { font-size:18px;}
+	.caption b { padding-top:0px;}
+	.white-box{ padding:30px 10px;}
+	.datepicker{ margin:-4px 9px 0 0 !important;}
+	.date{ font-size:14px;}
+	.date span{ font-size:12px;}
+}
+
+
+@media(max-width:360px){
+	.profilepic span { top:48px; right:-24px;}
+	.greyBox.timer { background-size:10%; background-position:98% 8px;}
+	.bar span { width:25%;}
+	.datepicker{ margin:-4px 5px 0 0 !important;}
+	
+}

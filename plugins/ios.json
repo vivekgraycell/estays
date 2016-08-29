@@ -1,0 +1,83 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "6747841157",
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        }
+    }
+}

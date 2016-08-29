@@ -1,0 +1,426 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@font-face {
+    font-family: 'montserratbold';
+    src: url('../../font/montserrat-bold-webfont.eot');
+    src: url('../../font/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/montserrat-bold-webfont.woff2') format('woff2'),
+         url('../../font/montserrat-bold-webfont.woff') format('woff'),
+         url('../../font/montserrat-bold-webfont.ttf') format('truetype'),
+         url('../../font/montserrat-bold-webfont.svg#montserratbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'montserratlight';
+    src: url('../../font/montserrat-light-webfont.eot');
+    src: url('../../font/montserrat-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/montserrat-light-webfont.woff2') format('woff2'),
+         url('../../font/montserrat-light-webfont.woff') format('woff'),
+         url('../../font/montserrat-light-webfont.ttf') format('truetype'),
+         url('../../font/montserrat-light-webfont.svg#montserratlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url('../../font/montserrat-regular-webfont.eot');
+    src: url('../../font/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/montserrat-regular-webfont.woff2') format('woff2'),
+         url('../../font/montserrat-regular-webfont.woff') format('woff'),
+         url('../../font/montserrat-regular-webfont.ttf') format('truetype'),
+         url('../../font/montserrat-regular-webfont.svg#montserratregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserratsemi_bold';
+    src: url('../../font/montserrat-semibold-webfont.eot');
+    src: url('../../font/montserrat-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../font/montserrat-semibold-webfont.woff2') format('woff2'),
+         url('../../font/montserrat-semibold-webfont.woff') format('woff'),
+         url('../../font/montserrat-semibold-webfont.ttf') format('truetype'),
+         url('../../font/montserrat-semibold-webfont.svg#montserratsemi_bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*---------------------------Reset Css------------------------------------------- */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video  {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	list-style: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+	line-height: normal;
+	word-wrap: break-word;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+article, aside, details, fig, caption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body {
+	float: left;
+	width: 100%;
+	font-size: 13px;
+	color: #3a383a;
+	  font-family: 'montserratregular';
+	 background:url(../../img/bg.jpg) no-repeat top center;
+	 background-size:cover;
+	 -moz-background-size:cover;
+	 -webkit-background-size:cover;
+}
+body.nobg { background:none; background-color:#e2fffe;}
+a {
+	color: #000;
+	text-decoration: none;
+	outline: none;
+	transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;	-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s; 
+}
+a:hover {
+	text-decoration: none;
+	color:#043062;
+}
+a img {
+	border: none;
+	outline: none;
+	text-decoration: none;
+}
+a:hover img {
+	border: none;
+	outline: none;
+	text-decoration: none;
+}
+img {
+	max-width: 100%;
+}
+input, select, textarea, button  {
+	vertical-align: middle;
+	outline: none;
+	border: none;
+	
+}
+
+
+h1 {
+	 font-family: 'montserratregular';
+	 font-size:42px;
+	 color:#043062;
+	 text-transform:uppercase;
+	 padding-bottom:20px;
+	 line-height:42px;
+	 letter-spacing:1px;
+}
+h2 {
+	 font-family: 'montserratregular';
+	 font-size:24px;
+	 color:#043062;
+	 text-transform:uppercase;
+	 padding-bottom:5px;
+	 line-height:26px;
+	
+}
+h3 {
+	 font-family: 'montserratregular';
+	font-size:22px;
+	color:#000;
+	line-height:24px;
+	padding-bottom:5px;
+}
+p {
+	font-size:18px;
+	line-height:24px;
+	color:#424242;
+	padding-bottom:10px;
+	text-transform:none;
+	 font-family: 'montserratregular';
+}
+h6{
+	font-size:16px;
+	color:#595c5c;
+	 font-family: 'montserratregular';
+	text-transform:uppercase;
+}
+p a {
+	color:#179cbb;
+}
+input, select , textarea { vertical-align:middle; outline:none;border:none; }
+textarea,input[type="text"],input[type="button"],input[type="submit"], select { -webkit-appearance: none ; -moz-appearance: none ; -o-appearance: none ;}
+
+
+.noImage {
+	background: url(../../images/noimage.png) no-repeat scroll center center #CCCCCC !important;
+	color: #535353;
+	font-weight: bold;
+	line-height: normal;
+	text-align: center;
+	text-transform: uppercase;
+	
+}
+
+.noImage > img { visibility:hidden;}
+
+.noPadding{ padding:0 !important;}
+
+/******************************/
+
+.fullWidth{float:left; width:100%;}
+
+
+/* Splash Screen CSS Starts*/
+
+/* .splash-logo{ display:flex; align-items:center; justify-content:center; min-height:768px;} */
+.splash-logo{ display:flex; align-items:center; justify-content:center; min-height:600px;}
+
+/* Splash Screen CSS End*/
+
+
+/* Register Screen CSS Starts */
+
+.register-main{ margin-bottom:30px;}
+.register-logo{ margin:160px 0 60px;}
+.register-button img{ margin-bottom:10px;}
+.seprator{ margin-bottom:20px; display:block;}
+
+/* Register Screen CSS End*/
+
+
+/* Search Screen CSS Starts */
+
+
+.title-text{ width:100%; float:left; text-align:center; background:#0c86b7; border-bottom:1px solid #9eb2b1; padding:20px 0; position:relative;}
+.title-text h4{ font-size:34px; color:#ffffff; padding:0; margin:0; text-transform:capitalize;  font-family: 'montserratregular';}
+.blueWhite-main{ width:100%; float:left; margin:70px 0 0;}
+.blue-top{ width:100%; float:left; background:#0180b3; border-radius:5px 5px 0 0; -moz-border-radius:5px 5px 0 0; -ms-border-radius:5px 5px 0 0; -webkit-border-radius:5px 5px 0 0; padding:8px 25px; box-sizing:border-box; text-transform:uppercase; font-size:26px; color:#ffffff; font-family: 'montserratregular';}
+.white-box{ width:100%; float:left; background:#ffffff;  border-radius:0 0 5px 5px; -moz-border-radius:0 0 5px 5px; -ms-border-radius:0 0 5px 5px; font-family: 'montserratregular'; -webkit-border-radius:0 0 5px 5px; padding:30px 25px; box-sizing:border-box; border:1px solid #c8c7cc; border-top:none;}	
+.select-text{ width:100%; float:left; margin-top:5px; font-size:34px; color:#000000; background:url(../../img/gray-right-arrow.png) no-repeat right 8px;}
+
+
+
+.margtop { margin-top:66px;}
+.margbot { margin-bottom:66px;}
+.greyBox { float:left; width:100%; background:#e2e2e2; padding:10px 20px; min-height:80px; box-sizing:border-box; color:#909090; font-size:34px;font-family: 'montserratregular'; font-weight:400;}	
+.padding0 { padding:0px;}
+.radioButtons{ margin:23px 0 0px 0; float:left; width:100%; border-bottom:1px solid #c8c7cc; padding-bottom:23px;}
+.radioButtons.last { border:0px solid #000;}
+.radioButtons input[type="radio"] {display:none;}
+.radioButtons input[type="radio"] + label {color: #000;font-family: 'montserratregular'; font-weight:400;font-size:34px; text-transform:none;}
+.radioButtons input[type="radio"] + label span {display:inline-block;width:44px;height:44px;margin:0px 30px ;vertical-align:middle;cursor:pointer;}
+.radioButtons input[type="radio"] + label span {background:url(../../img/radio-icon.png) no-repeat left top; float:left;}
+.radioButtons input[type="radio"]:checked + label span{background:url(../../img/active-radio-icon.png) no-repeat left top;}
+.radioButtons input[type="radio"] + label span, .radioButtons input[type="radio"]:checked + label span {-webkit-transition:background-color 0.4s linear; -o-transition:background-color 0.4s linear; -moz-transition:background-color 0.4s linear;  transition:background-color 0.4s linear;}
+
+.radioButton1{ margin:23px 0 0px 0; float:left; width:100%; border-bottom:1px solid #c8c7cc; padding-bottom:18px; color: #000; font-family: 'montserratregular'; font-weight:100;font-size:18px; text-transform:none;}
+/* .radioButton1 input[type="radio"] {display:none;}
+.radioButton1 input[type="radio"] + label {color: #000;font-family: 'montserratregular'; font-weight:400;font-size:34px; text-transform:none;}
+.radioButton1 input[type="radio"] + label {display:inline-block;width:44px;height:44px;margin:0px 30px ;vertical-align:middle;cursor:pointer;}
+.radioButton1 input[type="radio"] + label {background:url(../../img/radio-icon.png) no-repeat left top; float:left;}
+.radioButton1 input[type="radio"]:checked + label {background:url(../../img/active-radio-icon.png) no-repeat left top;}
+.radioButton1 input[type="radio"] + label, .radioButton1 input[type="radio"]:checked + label {-webkit-transition:background-color 0.4s linear; -o-transition:background-color 0.4s linear; -moz-transition:background-color 0.4s linear;  transition:background-color 0.4s linear;} */
+
+
+
+
+.back { position:absolute; left:15px; color:#ffffff; font-size:34px;font-family: 'montserratregular'; font-weight:400; padding-left:15px; text-transform:none;}
+.back img { margin-right:15px; float:left;}
+.back a { color:#ffffff;}
+.margtopExtra { margin-top:633px;}
+.heading { font-size:26px; text-transform:none; color:#6e6e70;font-family: 'montserratregular'; font-weight:400; margin-bottom:12px;}
+.twoCol { float:left; width:100%; background: url(../../img/sep.jpg) repeat-y center center  #1ba6a3; padding:36px 0 32px 0;}
+.infoText { float:left; padding-left:95px; color:#7beed4; font-size:26px;font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+.infoText span { color:#ffffff; font-size:44px;font-family: 'montserratregular'; font-weight:400;}
+.white-box.bid { padding-bottom:15px; border-radius:0 0 0 0; border-bottom:0px;}
+.spacetop { padding-top:70px;}
+
+
+
+.bottomLinks { float:left; width:100%; background:#ffffff; border-top:1px solid #41a0c6; text-align:center; position:fixed; bottom:0;}
+.bottomLinks a { text-align:center; float:left; width:100%; color:#0180b3; font-size:20px;font-family: 'montserratregular'; font-weight:400; text-transform:none; width:25%; padding:12px 0 0 0; min-height:62px;}
+.bottomLinks a:hover , .bottomLinks a.active { color:#ffffff;
+background: rgba(27,166,164,1);
+background: -moz-linear-gradient(left, rgba(27,166,164,1) 0%, rgba(1,128,179,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(27,166,164,1)), color-stop(100%, rgba(1,128,179,1)));
+background: -webkit-linear-gradient(left, rgba(27,166,164,1) 0%, rgba(1,128,179,1) 100%);
+background: -o-linear-gradient(left, rgba(27,166,164,1) 0%, rgba(1,128,179,1) 100%);
+background: -ms-linear-gradient(left, rgba(27,166,164,1) 0%, rgba(1,128,179,1) 100%);
+background: linear-gradient(to right, rgba(27,166,164,1) 0%, rgba(1,128,179,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1ba6a4', endColorstr='#0180b3', GradientType=1 );
+
+}
+
+.bottomLinks a .searchimg { background:url(../../img/search.png) no-repeat left top; width:24px; height:25px; float:none; display:inline-block;transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;	-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s; }
+.bottomLinks a:hover .searchimg , .bottomLinks a.active .searchimg { background:url(../../img/searchhover.png) no-repeat left top; }
+
+.bottomLinks a .Bookinging { background:url(../../img/booking.png) no-repeat left top; width:24px; height:25px; float:none; display:inline-block;transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;	-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s; }
+.bottomLinks a:hover .Bookinging , .bottomLinks a.active .Bookinging { background:url(../../img/bookinghover.png) no-repeat left top; }
+
+.bottomLinks a .Notificationimg { background:url(../../img/notification.png) no-repeat left top; width:24px; height:25px;float:none; display:inline-block;transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;	-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s; }
+.bottomLinks a:hover .Notificationimg , .bottomLinks a.active .Notificationimg { background:url(../../img/notificationhover.png) no-repeat left top; }
+
+.bottomLinks a .Profileimg { background:url(../../img/profile.png) no-repeat left top; width:24px; height:25px; float:none; display:inline-block;transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;	-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s; }
+.bottomLinks a:hover .Profileimg , .bottomLinks a.active .Profileimg { background:url(../../img/profilehover.png) no-repeat left top; }
+
+.boderBottom { float:left; width:100%; border-bottom:1px solid #c8c7cc; padding:0 0 20px 0; margin:20px 0px 0 0;}
+.image { float:left; margin:0 20px 0 0; width:178px; height:178px;}
+.image img { float:left; width:auto; max-width:100%; height:auto;}
+.title { font-size:34px; color:#000000;font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+.text { font-size:26px;font-family: 'montserratregular'; font-weight:400; color:#4e4e4e;text-transform:none;}
+.desc { float:left; width:75%; margin-top:10px;}
+.linkarrow { float:right; margin-top:55px}
+
+
+.detailBlock { float:left; width:100%; border-bottom:1px solid #c8c7cc; padding:23px 0 22px 0;}
+.detailBlock.last { border-bottom:0px;}
+.thead , .theadinfo { font-size:34px; color:#000000;font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+.theadinfo { color:#c7c7cd;}
+.spacing { float:left; width:100%; height:180px;}
+a.editprofile { float:right; font-size:26px; color:#1ba6a3; border:2px solid #1ba6a3; border-radius:10px; padding:12px 50px ; text-transform:none; cursor:pointer; margin-top:100px;}
+a.editprofile:hover { color:#0C86B7; border-color:#0C86B7;}
+.profileInfo { float:left; width:100%; padding:55px 0 0 0;}
+.profilepic { float:left; border-radius:100px; position:relative;}
+.profilepic img { float:left; border-radius:50%; width:100%; height:auto;}
+.profilepic span { position:absolute; top:85px; right:-22px;}
+.NFI-wrapper {position: relative;overflow: visible !important;float: left;	}
+.NFI-button {height: 44px;line-height: 44px;width: 44px;padding: 0 !important;position: absolute !important;left: 0; background:url(../../img/plus.png) no-repeat left top;}
+.NFI-filename {width: 95%;background: #ddd;border: none;float: left;height: 30px;padding: 0; display:none !important; font-size:0px !important;}
+.NFI-current {height: 44px !important;line-height: 30px !important;width: 44px; text-indent:9999 !important;}
+span .NFI-button { font-size:0px;}
+.greyInfo { font-size:34px; color:#909090;font-family: 'montserratregular'; font-weight:400; padding:10px 0 0 10px; text-transform:none;}
+a.yellowLink { float:left; color:#4e4e4e; font-size:20px; background:#ffc332; text-transform:capitalize; padding:10px 9px; border-radius:10px; margin:14px 0 20px 0;}
+a.yellowLink:hover { color:#ffffff;}
+.title.margbot { margin-bottom:13px;}
+
+.summary span { float:left; width:100%; padding-bottom:5px;}
+.summary span.theadinfo { font-size:26px; color:#6e6e70;}
+.title01 {font-size:26px; color:#6e6e70; text-transform:none;font-family: 'montserratregular'; font-weight:400; padding-bottom:13px;}
+.forgotPassword {font-size:15px; color:#6e6e70; margin-top:10px; float:right; text-transform:none;font-family: 'montserratregular'; font-weight:400; padding-bottom:13px;}
+.headtexthead {font-size:15px; color:#6e6e70; margin-top:10px; text-transform:none;font-family: 'montserratregular'; font-weight:400; padding-bottom:13px;}
+
+.greyBox.timer { background:url(../../img/timer.png) no-repeat 98.5% 18px #e2e2e2; padding-right:80px;}
+.termCondition { float:left; width:100%; margin:72px 0 2px 0;color:#4e4e4e; font-size:30px; text-transform:none;font-family: 'montserratregular'; font-weight:400; }
+.termCondition a { color:#0180b3;}
+.termCondition a:hover { text-decoration:underline;}
+input[type=checkbox] {display: none;}
+.checkbox label:before {border-radius: 3px;}
+input[type=checkbox]:checked + label:before {content: "\2713";text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);font-size: 15px;color: #f3f3f3;text-align: center;line-height: 15px;}
+.roundedOne span { padding-top:3px; float:left;}
+/* ROUNDED ONE */
+.roundedOne {height: 44px;position: relative; padding-left:70px; }
+.roundedOne label {cursor: pointer;position: absolute;width: 44px;height: 44px;background:url(../../img/checkbox.png) no-repeat left top;left: 0px;top: 0px;}
+.roundedOne label:after {-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter: alpha(opacity=0);opacity: 0;content: '';position: absolute;width: 44px;height: 44px;top: 0px;left: 0px;background:url(../../img/checkedbox.png) no-repeat left top;}
+.roundedOne label:hover::after {-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";filter: alpha(opacity=30);	opacity: 0;}
+.roundedOne input[type=checkbox]:checked + label:after {-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter: alpha(opacity=100);opacity: 1;}
+
+
+
+.title-text.bannerOuter { padding:0px; background:none;}
+.banner { float:left; width:100%; height:auto; position:relative; }
+.banner img { float:left; width:100%; height:auto; max-width:100%;}
+.title-text.bannerOuter .back { top:25px;}
+.caption { position:absolute; bottom:95px; left:23px; }
+.banner .back { left:0;}
+.banner .back img { width:auto;}
+.caption h1 { text-align:left; color:#ffffff; font-size:44px; line-height:normal; padding-bottom:26px;}
+.caption  { text-align:left; color:#ffffff; font-size:26px; line-height:normal;}
+.caption  img { width:auto;}
+.caption  b { float:left; padding-top:6px; padding-left:20px;}
+.caption p span { float:left;}
+.loc , .phone { float:left; width:100%; padding-bottom:10px;}
+.textinfo p { font-size:30px; color:#4e4e4e; line-height:normal;}
+.photo { float:left; width:32%; margin:0 20px 20px 0}
+.photo.last { margin-right:0px;}
+.photo img { width:100%; float:left; height:auto;}
+.yellowblock { float:left; width:100%; background:#ffc332; padding:20px 0px; margin:72px 0px;}
+.yellowblock.padding0 { padding:0px;}
+.bar { float:left; width:100%;}
+.bar span { display:table-cell; width:9.5%; margin-right:20px; vertical-align:top;}
+.bar b { display:table-cell; vertical-align:top; width:90%; color:#a5790f; font-size:26px;font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+.counter { text-align:center;}
+.counter h3 { text-transform:none; font-size:26px; color:#ff3333;font-family: 'montserratregular'; font-weight:400; }
+#countdown { font-size:70px; color:#000000; float:left; width:100%; margin:13px 0 63px 0;font-family: 'montserratregular'; font-weight:400; }
+.notificationnos { background:#ff5e5e; position:relative; font-size:13px;font-family: 'montserratregular'; font-weight:400; border-radius:100%; padding:5px; border:2px solid #085675; right:-7px; top:-7px; min-width:20px; min-height:20px; float:left; }
+.notifiationB .desc { width:68%;}
+.notifiationB .linkarrow { float:right; text-align:right;}
+.margin0 { margin:0px;}
+
+
+
+
+.border-bottom { float:left; width:100%; border-bottom:2px solid #e5af2d;}
+.border-bottom .left {border-right:2px solid #e5af2d; width:50%; padding:22px 30px 25px 30px; float:left;}
+.border-bottom .right {border-right:0px solid #e5af2d; width:50%;padding:22px 30px 25px 30px; float:right;}
+
+.border-bottom  span { float:left; width:100%; color:#a4780f; font-size:26px;font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+.border-bottom  span strong { float:left; width:100%; color:#000000; font-size:34px;font-family: 'montserratregular'; font-weight:400;}
+.yellowblock .counter { margin-top:72px;}
+
+
+#outer { position:relative; float:left; width:100%; }
+.navbtn { position:absolute; z-index:99999; right:15px; top:26px; }
+
+.navOuter {  float:right; position:fixed; right:-250px; width:250px; background:url(../../img/navbg.jpg) repeat-y left top;; margin:0px; overflow-x:hidden; overflow-y:scroll; height:100%; top:0px; padding-top:20px; z-index:9999;}
+ul.nav li { width:100%; border-bottom:1px solid #085675; border-right:0px; padding:10px 16px; text-align:left; box-sizing:border-box; float:left; font-size:34px; color:#6badc8; font-family: 'montserratregular'; font-weight:400; text-transform:none; }
+ul.nav li > a { font-size:34px; color:#ffffff; font-family: 'montserratregular'; font-weight:400; text-transform:none;     }
+ul.nav li > a:hover { background:none;}
+.linksButtons { float:left; width:100%; text-align:center; position:relative; top:44%; bottom:30px;}
+.linksButtons a { float:none; display:inline-block; color:#ffffff; border:2px solid #1ba6a3; border-radius:10px; text-transform:none; font-size:26px; padding:13px 35px; margin:0 5px;}
+
+
+
+
+
+/* .radioButtons01{ margin:23px 0 0px 0; float:left; width:100%; border-bottom:1px solid #085675; padding-bottom:23px;}
+.radioButtons01.last { border:0px solid #000;}
+.radioButtons01 input[type="radio"] {display:none;}
+.radioButtons01 input[type="radio"] + label {font-size:34px; color:#ffffff; font-family: 'montserratregular'; font-weight:400; text-transform:none; float:left; padding-left:18px; width:220px; text-align:left; cursor:pointer;}
+.radioButtons01 input[type="radio"] + label span {display:inline-block;width:27px;height:22px;margin:0px;vertical-align:middle;cursor:pointer;}
+.radioButtons01 input[type="radio"] + label span {background:none; float:right;}
+.radioButtons01 input[type="radio"]:checked + label span{background:url(../../img/check.png) no-repeat 100% top; position:relative;top:0; }
+.radioButtons01 input[type="radio"] + label span, .radioButtons input[type="radio"]:checked + label span {-webkit-transition:background-color 0.4s linear; -o-transition:background-color 0.4s linear; -moz-transition:background-color 0.4s linear;  transition:background-color 0.4s linear;}
+ */
+ 
+ .radioButtons01{ margin:23px 0 0px 0; float:left; width:100%; border-bottom:1px solid #085675; padding-bottom:23px;}
+.radioButtons01.last { border:0px solid #000;}
+.radioButtons01 input[type="radio"] {display:none;}
+.radioButtons01 input[type="radio"] + label {font-size:34px; color:#ffffff; font-family: 'montserratregular'; font-weight:400; text-transform:none; float:left; padding-left:18px; width:220px; text-align:left; cursor:pointer;}
+.radioButtons01 input[type="radio"] + label span {display:inline-block;width:27px;height:22px;margin:0px;vertical-align:middle;cursor:pointer;}
+.radioButtons01 input[type="radio"] + label span {background:none; float:right;}
+.radioButtons01 input[type="radio"]:checked + label span{background:url(../../img/check.png) no-repeat 100% top; position:relative;top:10px; }
+.radioButtons01 input[type="radio"] + label span, .radioButtons input[type="radio"]:checked + label span {-webkit-transition:background-color 0.4s linear; -o-transition:background-color 0.4s linear; -moz-transition:background-color 0.4s linear;  transition:background-color 0.4s linear;}
+.navOuter h6 { border-bottom:1px solid #085675; padding:10px 16px; text-align:left; box-sizing:border-box; font-size:34px; color:#6badc8; font-family: 'montserratregular'; font-weight:400; text-transform:none;}
+
+
+.datepicker {background: url(../../img/calender-icon.png) no-repeat left top;cursor: pointer;margin:12px 30px 0 0 !important;;height: 44px !important;line-height: 44px !important; width:44px; float:left;}
+.calarrow { float:right; margin-top:10px;} 
+.date { float:left; font-size:34px; color:#000000;font-family: 'montserratregular'; font-weight:400; line-height:normal; }
+.date span { font-size:26px; color:#a9a9ac; line-height:normal;}
+
+
+/* CSS Edited on 05-02-2016 */
+
+.top-fixed{ position:fixed; z-index:999999; top:0; width:100%;}
+.bottom-fixed{ position:fixed; z-index:999999; bottom:0;}
+.top-gap{ margin-top:80px;}
+.margbot-inner { margin-bottom:120px;}
+
+/* CSS Edited on 05-02-2016 */
+
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+<link rel="stylesheet" type="text/css" href="../../css/english/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/core.css" />
+<link rel="stylesheet" type="text/css" href="../../css/english/responsive.css" />
+<!-- <link rel="stylesheet" type="text/css" href="../../css/english/index.css" /> -->
+<style type="text/css">
+#loadingimg{
+            display: block;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/gif-load.gif') 50% 50% no-repeat rgba(192, 192, 192, 0.5);
+        }
+</style>
+<title>Estays :: Summary</title>
+</head>
+
+<body>
+<div id="loadingimg" style="display:none">
+        </div>
+<div id="outer"><div class="fullWidth">
+  <div class="title-text top-fixed">
+    <div class="back"><a onclick="backButton();" href="javascript:void(0)"><img src="../../img/backarrow.png" alt=""> Back</a></div>
+    <h4>Summary</h4>
+    <a href="javascript:void(0)" class="navbtn"><img src="../../img/navigator.png" alt=""> </a>
+      <div class="navOuter">
+        <h6>Currency</h6>
+        <div class="radioButtons01">
+          <input type="radio" id="radio01" name="radio" />
+          <label onclick="changecurrencySR();" for="radio01"><span></span>SR</label>
+        </div>
+        <div class="radioButtons01">
+          <input type="radio" id="radio02" name="radio" />
+          <label onclick="changecurrencyUSD();" for="radio02"><span></span>USD</label>
+        </div>
+        
+        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">Settings</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">Logout</a> </div>
+      </div>
+  </div>
+</div>
+<div class="top-gap"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="blue-top">Summary</div>
+        <div class="white-box padding0">
+          <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> Country</span><span class="thead" id="summary_country"></span></div>
+          </div>
+          <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> City</span><span class="thead" id="summary_city"></span></div>
+          </div>
+          <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> Hotel</span><span class="thead" id="summary_hotel"></span></div>
+          </div>
+          <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> Room Type </span><span class="thead" id="summary_room_type"></span></div>
+          </div>
+          <div class="detailBlock summary">
+            <div class="col-xs-6"><span class="theadinfo"> Check-in </span><span class="thead" id="summary_check_in_date"></span></div>
+            <div class="col-xs-6"><span class="theadinfo"> Check-out </span><span class="thead" id="summary_check_out_date"></span></div>
+          </div>
+          <div class="detailBlock last summary">
+            <div class="col-xs-12"><span class="theadinfo"> Price </span><span class="thead" id="summary_bid_amt"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="title01">Please input following information</div>
+        <div class="blue-top">Name</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="summary_user_name">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Email address</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="summary_user_email">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Arrival time</div>
+        <div class="white-box">
+          <input type="time" class="greyBox timer" id="usr_arvl_time">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">Phone</div>
+        <div class="white-box">
+          <input type="number" class="greyBox" id="usr_phn_num">
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="termCondition">
+      <!--<input id="check1" type="checkbox" name="check" value="check1">
+       <label> <span>I agree to the <a href="javascript:void(0)">Terms and Conditions.</a></span></label>-->
+       
+       <div class="roundedOne">
+	<input type="checkbox" value="None" id="roundedOne" name="check" />
+	<label for="roundedOne"> </label>
+    <span>I agree to the <a onclick="termsandconditionsscreen();" href="javascript:void(0)">Terms and Conditions.</a></span>
+</div>
+       
+       
+       
+      </div>
+    </div>
+    <div class="col-xs-12 text-center register-button margtop margbot-inner"> <a href="javascript:void(0)"><img onclick="validationCheck();" src="../../img/submit.png" alt="#"></a> </div>
+  </div>
+</div>
+<div class="botm-gap"></div>
+<div class="fullWidth">
+	<div class="bottomLinks">
+		<a class="active" href="javascript:void(0)"> <span class="searchimg"></span> <br> Search</a>
+		<a onclick="openBookingFoot();" href="javascript:void(0)"><span class="Bookinging"></span> <br> Bookings</a>
+		<a onclick="openNotificationFoot();" href="javascript:void(0)"><span class="Notificationimg"><span style="display: none;" class="notificationnos" id="notification_count"></span></span> <br> Notifications</a>
+		<a onclick="openProfileFoot();" href="javascript:void(0)"><span class="Profileimg"></span> <br> Profile</a> </div>
+</div>
+<script type="text/javascript" src="../../cordova.js"></script>
+<script type="text/javascript" src="../../js/english/jquery.min.js"></script> 
+<script type="text/javascript" src="../../js/english/jquery.nicefileinput.js"></script>
+<script type="text/javascript" src="../../js/english/globaldb.js"></script> 
+<script type="text/javascript" src="../../js/english/bootstrap.js"></script> 
+<script type="text/javascript" src="../../js/english/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/english/core.js"></script> 
+<script type="text/javascript" src="../../js/english/summaryscreen.js"></script>
+<script>
+       $(document).ready(function(){
+		$("input[type=file]").nicefileinput();
+});
+    
+    </script></div>
+</body>
+</html>
