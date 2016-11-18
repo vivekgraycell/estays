@@ -45,7 +45,7 @@
           <label onclick="changecurrencyUSD();" for="radio02"><span></span>دولار أمريكي</label>
         </div>
         
-        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
+        <div class="linksButtons"> <a href="javascript:void(0)" onclick="checkbidstatus();">التحقق من حالة الحجز</a><a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
       </div>
   </div>
 </div>
@@ -59,8 +59,14 @@
           <div class="detailBlock summary">
             <div class="col-xs-12"><span class="theadinfo"> بلد</span><span class="thead" id="summary_country"></span></div>
           </div>
+		  <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> حالة</span><span class="thead" id="summary_state"></span></div>
+          </div>   
           <div class="detailBlock summary">
             <div class="col-xs-12"><span class="theadinfo"> مدينة</span><span class="thead" id="summary_city"></span></div>
+          </div>          
+		  <div class="detailBlock summary">
+            <div class="col-xs-12"><span class="theadinfo"> منطقة</span><span class="thead" id="summary_area"></span></div>
           </div>
           <div class="detailBlock summary">
             <div class="col-xs-12"><span class="theadinfo"> الفندق</span><span class="thead" id="summary_hotel"></span></div>
@@ -95,7 +101,7 @@
       <div class="blueWhite-main">
         <div class="blue-top">وقت الوصول</div>
         <div class="white-box">
-          <input type="time" class="greyBox timer" id="usr_arvl_time">
+          <input type="time" class="greyBox timer" style="height:40px!important" id="usr_arvl_time">
         </div>
       </div>
       <div class="blueWhite-main">
@@ -104,6 +110,55 @@
           <input type="number" class="greyBox" id="usr_phn_num">
         </div>
       </div>
+    </div>
+	<div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="title01">يرجى تفاصيل بطاقة الائتمان المدخلات</div>
+        <div class="blue-top">الاسم على البطاقة</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="crd_name_on_card">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">رقم بطاقة الائتمان</div>
+        <div class="white-box">
+          <input type="text" class="greyBox" id="crd_card_num" pattern="[0-9]{13,16}">
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">رمز الحماية</div>
+        <div class="white-box">
+          <input type="password" class="greyBox" id="crd_security_code" maxlength="4">
+        </div>
+      </div>
+	  
+	  <div class="blueWhite-main">
+        <div class="blue-top">شهر انتهاء الصلاحية</div>
+        <div class="white-box">
+			<select id="crd_expiry_mnth"  class="greyBox">
+			    <option value=''>--اختر الشهر--</option>
+				<option selected value='1'>كانون الثاني</option>
+				<option value='2'>فبراير</option>
+				<option value='3'>مارس</option>
+				<option value='4'>أبريل</option>
+				<option value='5'>قد</option>
+				<option value='6'>يونيو</option>
+				<option value='7'>يوليو</option>
+				<option value='8'>أغسطس</option>
+				<option value='9'>سبتمبر</option>
+				<option value='10'>شهر اكتوبر</option>
+				<option value='11'>تشرين الثاني</option>
+				<option value='12'>ديسمبر</option>
+			</select>
+        </div>
+      </div>
+      <div class="blueWhite-main">
+        <div class="blue-top">انتهاء السنة</div>
+        <div class="white-box">
+          <input type="number" class="greyBox" id="crd_expiry_year" max="2050" min="2016">
+        </div>
+      </div>      
+	  
     </div>
     <div class="col-xs-12">
       <div class="termCondition">
@@ -143,6 +198,8 @@
 <script>
        $(document).ready(function(){
 		$("input[type=file]").nicefileinput();
+                         
+                         $("#usr_arvl_time").val ( new Date(new Date().getTime()).toLocaleTimeString());
 });
     
     </script></div>

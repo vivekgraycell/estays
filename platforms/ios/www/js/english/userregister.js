@@ -1,15 +1,35 @@
 document.addEventListener("deviceready", onDeviceReady, true);
 
 function onDeviceReady(){
-	
-	
-	
 	var selectedLng = window.localStorage.getItem("selectedLanguage");
-	
 	if (selectedLng == "Arb"){
 		window.location.replace("../arabic/register.html");
 	}else{
 	}
+	
+		var lsItem = window.localStorage.getItem("goingtocheckout");
+		if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+			//do nothing
+		}
+		else{
+			//window.localStorage.removeItem("goingtocheckout");
+			document.getElementById("opencheckout").style.display = "block";
+		}
+}
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    return states[networkState];
 }
 
 function opensummary(){
@@ -19,34 +39,38 @@ function opensummary(){
 //Method for google plus login
 function googlePlusLogin(){
 	
-	var networkState = navigator.network.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.NONE]     = 'No network connection';
-
-//    alert("networkState "+networkState);
-
-    if (networkState == 'unknown' || networkState == 'none') {
-    	alert("Please check your internet connection.");
-    }else{
+		networkState = checkConnection();
+		if (networkState == 'No network connection') {
+            navigator.notification.alert(
+                                         'Please check your internet connection.',  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            return false;
+        
+        }else{
     	window.plugins.googleplus.login({
-		'iOSApiKey': '6747841157-e9np87eko1avl53qjvgise91ngv6u0c2.apps.googleusercontent.com'
-	},
-	function (obj){
-		// alert(JSON.stringify(obj));
-//		alert("user email : "+obj.email+" user name : "+obj.displayName);
-		socialmedialogin(obj.email, obj.displayName);
-	},
-	function (msg){
-		alert('error : ' + msg);
-	});
-    }
+			//scopes:['userinfo_profile'],
+			//webClientId: '6747841157-e9np87eko1avl53qjvgise91ngv6u0c2.apps.googleusercontent.com',
+			webClientId: '6747841157-k8rphsd349b96lo3e8vd91p5euj8tv25.apps.googleusercontent.com',
+			offline : false
+		},
+		function (obj){
+			// alert(JSON.stringify(obj));
+	//		alert("user email : "+obj.email+" user name : "+obj.displayName);
+			socialmedialogin(obj.email, obj.displayName);
+		},
+		function (msg){
+                                        
+                                        navigator.notification.alert(
+                                                                     'error : ' + msg,  // message
+                                                                     function(){},         // callback
+                                                                     'Alert',            // title
+                                                                     'OK'                  // buttonName
+                                                                     );
+		});
+		}
 	
 	
 }
@@ -54,30 +78,31 @@ function googlePlusLogin(){
 //Method to logout from google plus account
 function googlePlusLogout(){
 	window.plugins.googleplus.logout(function (msg){
-		alert(msg);
+                                     
+                                     navigator.notification.alert(
+                                                                   msg,  // message
+                                                                  function(){},         // callback
+                                                                  'Alert',            // title
+                                                                  'OK'                  // buttonName
+                                                                  );
+                                     
 	});
 }
 
 //Method for facebook login
 function facebookLogin(){
 	
-	var networkState = navigator.network.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.NONE]     = 'No network connection';
-
-//    alert("networkState "+networkState);
-
-    if (networkState == 'unknown' || networkState == 'none') {
-    	alert("Please check your internet connection.");
-    }else{
-    	facebookConnectPlugin.login(["email"], 
+		networkState = checkConnection();
+		if (networkState == 'No network connection') {
+            navigator.notification.alert(
+                                         'Please check your internet connection.',  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            return false;
+		}else{
+    	facebookConnectPlugin.login(["email"],
             function (response) {
             	console.log("facebookLogin : "+JSON.stringify(response));
 //             alert(JSON.stringify(response));
@@ -88,7 +113,15 @@ function facebookLogin(){
              	socialmedialogin(response.email, response.name);
              });
          },
-         function (response) { alert(JSON.stringify(response)) });
+         function (response) {
+                                    navigator.notification.alert(
+                                                                 'Please try again',  // message
+                                                                 function(){},         // callback
+                                                                 'Alert',            // title
+                                                                 'OK'                  // buttonName
+                                                                 );
+                                    
+                                    });
     }
 }
 
@@ -96,28 +129,26 @@ function facebookLogin(){
 //Calling this method will disconnect user from current login account.
 function googlePlusDisconnect(){
 	window.plugins.googleplus.disconnect(function (msg){
-		alert(msg);
+                                         navigator.notification.alert(
+                                                                      msg,  // message
+                                                                      function(){},         // callback
+                                                                      'Alert',            // title
+                                                                      'OK'                  // buttonName
+                                                                      );
 	});
 }
 
 //Method to login via twitter
 function twitterLogin(){
-	var networkState = navigator.network.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.NONE]     = 'No network connection';
-
-//    alert("networkState "+networkState);
-
-    if (networkState == 'unknown' || networkState == 'none') {
-    	alert("Please check your internet connection.");
-    }else{
+		networkState = checkConnection();
+		if (networkState == 'No network connection') {
+            navigator.notification.alert(
+                                         'Please check your internet connection.',  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            return false;		}else{
     	TwitterConnect.login(function(result){
 //		alert("Login Successfull "+ " "+ JSON.stringify(result));
 		console.log(""+JSON.stringify(result));
@@ -126,7 +157,14 @@ function twitterLogin(){
 		// window.open("customerinfosummary.html");
 	}, function(error){
 		console.log("error occurred : "+error);
-		alert("Error occurred "+" "+error);
+                             
+                             navigator.notification.alert(
+                                                          "Error occurred "+" "+error,  // message
+                                                          function(){},         // callback
+                                                          'Alert',            // title
+                                                          'OK'                  // buttonName
+                                                          );
+                             
 	});
     }
 	
@@ -138,30 +176,36 @@ function twitterLogin(){
 function twitterLogout(){
 	TwitterConnect.logout(
 		function(){
-			alert("Successful logout");
+                          navigator.notification.alert(
+                                                       "Successful logout",  // message
+                                                       function(){},         // callback
+                                                       'Alert',            // title
+                                                       'OK'                  // buttonName
+                                                       );
 		}, function(){
-			alert("Error occurred.");
+                          navigator.notification.alert(
+                                                       "Error occurred.",  // message
+                                                       function(){},         // callback
+                                                       'Alert',            // title
+                                                       'OK'                  // buttonName
+                                                       );
+                          
 		});
 }
 
 function socialmedialogin(email, username){
 	
-	var networkState = navigator.network.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.NONE]     = 'No network connection';
-
-//    alert("networkState "+networkState);
-
-    if (networkState == 'unknown' || networkState == 'none') {
-    	alert("Please check your internet connection.");
-    }else{
+		networkState = checkConnection();
+		if (networkState == 'No network connection') {
+            
+            navigator.notification.alert(
+                                         "Please check your internet connection.",  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            return false;
+		}else{
     	var data = {userEmail:email, userName:username, deviceId:window.localStorage.getItem("user_device_Id"), deviceType:window.localStorage.getItem("user_device_type"), loginType:"socialMedialogin"};
 	$.ajax({
 		type: 'POST',
@@ -209,62 +253,70 @@ function socialmedialogin(email, username){
 															if(userBidList === undefined || userBidList === null || userBidList.length === 0){
 																window.open("summary.html");
 															}else{
-																window.open("user-bid.html");
 																window.localStorage.removeItem("UserBid");
+																window.open("user-bid.html");
 															}
 															
 														}else{
-															window.open("termsandcondition.html");
 															window.localStorage.removeItem("TermsAndConditionScreen");
+															window.open("termsandcondition.html");
 														}
 													}else{
-														window.open("summary.html");
 														window.localStorage.removeItem("SummaryScreen");
+														window.open("summary.html");
 													}
 												}else{
-													window.open("select-hotel-test.html");
 													window.localStorage.removeItem("SelectHotel");
+													window.open("select-hotel-test.html");
 												}
 											}else{
-												window.open("search.html");
 												window.localStorage.removeItem("SearchPage");
+												window.open("search.html");
 											}
 										}else{
-											window.open("notification-hotel-detail.html");
 											window.localStorage.removeItem("NotificationHotelDetail");
+											window.open("notification-hotel-detail.html");
 										}
 									}else{
-										window.open("hotel-detail.html");
 										window.localStorage.removeItem("HotelDetail");
+										window.open("hotel-detail.html");
 									}
 								}else{
-									window.open("hotel-book.html");
 									window.localStorage.removeItem("HotelBook");
+									window.open("hotel-book.html");
 								}
 							}else{
-								window.open("edit-user-profile.html");
 								window.localStorage.removeItem("EditProfile");
+								window.open("edit-user-profile.html");
 							}
 						}else{
-							window.open("choose-price-test.html");
 							window.localStorage.removeItem("ChoosePrice");
+							window.open("choose-price-test.html");
 						}
 						}else{
-						window.open("user-profile.html");
 						window.localStorage.removeItem("ProfilePage");
+						window.open("user-profile.html");
 					}
 				}else{
-					window.open("notification.html");
 					window.localStorage.removeItem("NotificationPage");
+					window.open("notification.html");
 				}
 			}else{
-				window.open("bookings.html");
 				window.localStorage.removeItem("BookingPage");
+				window.open("bookings.html");
 			}
 		},error: function(xhr){
 			var jsonResponse = JSON.parse(xhr.responseText);
 			document.getElementById("loadingimg").style.display = "none";
-			alert(""+jsonResponse.message);
+           
+           navigator.notification.alert(
+                                        ""+jsonResponse.message,  // message
+                                        function(){},         // callback
+                                        'Alert',            // title
+                                        'OK'                  // buttonName
+                                        );
+
+           
 		}
 	});
     }
@@ -274,5 +326,8 @@ function socialmedialogin(email, username){
 
 function openLoginPage(){
 	window.open("login.html");
+}
+function opencheckout(){
+	window.open("summary.html");
 }
 

@@ -72,7 +72,7 @@ function checkConnection() {
     return states[networkState];
 }
 function backButton(){
-    navigator.app.backHistory();
+    history.go(-1);navigator.app.backHistory();
 }
 
 function opensignuppage(){
@@ -85,7 +85,14 @@ function forgotPassword(){
     	
     	networkState = checkConnection();
 		if (networkState == 'No network connection') {
-			alert("Please check your internet connection.");
+            navigator.notification.alert(
+                                         'Please check your internet connection.',  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            
+            return false;
 		}else{
         	var fpdata = {userEmail:nwPass};
         console.log(""+fpdata);
@@ -99,11 +106,25 @@ function forgotPassword(){
 			contentType: "application/json",
 			success : function(data){
 				document.getElementById("loadingimg").style.display = "none";
-				alert(""+data.message);
+
+               navigator.notification.alert(
+                                            ""+data.message,  // message
+                                            function(){},         // callback
+                                            'Alert',            // title
+                                            'OK'                  // buttonName
+                                            );
+               
 			},error : function(xhr) {
 				var jsonResponse = JSON.parse(xhr.responseText);
 				document.getElementById("loadingimg").style.display = "none";
-				alert(""+jsonResponse.message);
+               
+               navigator.notification.alert(
+                                            ""+jsonResponse.message,  // message
+                                            function(){},         // callback
+                                            'Alert',            // title
+                                            'OK'                  // buttonName
+                                            );
+               
 			}
 		});
         }
@@ -114,13 +135,38 @@ function forgotPassword(){
 
 function validationCheck(){
 	if(document.getElementById("login_user_email").value == ""){
-		alert("Email address cannot be left blank.");
+		
+        navigator.notification.alert(
+                                     'Email address cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
 	}else if(document.getElementById("login_password").value == ""){
-		alert("Password cannot be left blank.");
+    
+        navigator.notification.alert(
+                                     'Password cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
 	}else{
 		networkState = checkConnection();
 		if (networkState == 'No network connection') {
-			alert("Please check your internet connection.");
+			
+            navigator.notification.alert(
+                                         'Please check your internet connection.',  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            
+            return false;
+            
 		}else{
 	    	var data = {userEmail:document.getElementById("login_user_email").value , userPassword:document.getElementById("login_password").value, deviceId:window.localStorage.getItem("user_device_Id"), deviceType:window.localStorage.getItem("user_device_type"), loginType:"applogin"};
 		$.ajax({
@@ -166,63 +212,70 @@ function validationCheck(){
 																if(userBidList === undefined || userBidList === null || userBidList.length === 0){
 																	window.open("summary.html");
 																}else{
-																	window.open("user-bid.html");
 																	window.localStorage.removeItem("UserBid");
+																	window.open("user-bid.html");
 																}
 															}else{
-																window.open("termsandcondition.html");
 																window.localStorage.removeItem("TermsAndConditionScreen");
+																window.open("termsandcondition.html");
 															}
 														}else{
-															window.open("summary.html");
 															window.localStorage.removeItem("SummaryScreen");
+															window.open("summary.html");
 														}
 													}else{
-														window.open("select-hotel-test.html");
 														window.localStorage.removeItem("SelectHotel");
+														window.open("select-hotel-test.html");
 													}
 												}else{
-													window.open("search.html");
 													window.localStorage.removeItem("SearchPage");
+													window.open("search.html");
 												}
 											}else{
-												window.open("notification-hotel-detail.html");
 												window.localStorage.removeItem("NotificationHotelDetail");
+												window.open("notification-hotel-detail.html");
 											}
 										}else{
-											window.open("hotel-detail.html");
 											window.localStorage.removeItem("HotelDetail");
+											window.open("hotel-detail.html");
 										}
 									}else{
-										window.open("hotel-book.html");
 										window.localStorage.removeItem("HotelBook");
+										window.open("hotel-book.html");
 									}
 								}else{
-									window.open("edit-user-profile.html");
 									window.localStorage.removeItem("EditProfile");
+									window.open("edit-user-profile.html");
 								}
 							}else{
-								window.open("choose-price-test.html");
 								window.localStorage.removeItem("ChoosePrice");
+								window.open("choose-price-test.html");
 							}
 						}else{
-							window.open("user-profile.html");
 							window.localStorage.removeItem("ProfilePage");
+							window.open("user-profile.html");
 						}
 					}else{
-						window.open("notification.html");
 						window.localStorage.removeItem("NotificationPage");
+						window.open("notification.html");
 					}
 				}else{
-					window.open("bookings.html");
 					window.localStorage.removeItem("BookingPage");
+					window.open("bookings.html");
 				}
 				
 //				window.open("summary.html");
 			},error : function(xhr) {
 				var jsonResponse = JSON.parse(xhr.responseText);
 				document.getElementById("loadingimg").style.display = "none";
-				alert(""+jsonResponse.message);
+              
+               navigator.notification.alert(
+                                            ""+jsonResponse.message,  // message
+                                            function(){},         // callback
+                                            'Alert',            // title
+                                            'OK'                  // buttonName
+                                            );
+               
 			}
 		});
 	    }
@@ -244,63 +297,111 @@ function bookingFoot(){
 }
 
 function changeLanguageBtn(){
-	if(confirm("Change language to Arabic.") == true){
-		//Ok button clicked.
-		window.localStorage.setItem("selectedLanguage", "Arb");
-		window.location.replace("../arabic/login.html");
-	}else{
-		//Cancel button clicked.
-	}
+    navigator.notification.confirm(
+                                   'Change language to Arabic.',  // message
+                                   function(buttonIndex){
+                                   
+                                   switch (buttonIndex)
+                                   {
+                                   case 0:
+                                   break;
+                                   case 1:
+                                   window.localStorage.setItem("selectedLanguage", "Arb");
+                                   window.location.replace("../arabic/search.html");
+                                   break;}
+                                   
+                                   },         // callback
+                                   'Alert',            // title
+                                   ['Confirm'  ,'Cancel']
+                                   // buttonName
+                                   );
 }
 
 function logoutUser(){
-	var lsItem = window.localStorage.getItem("user_user_id");
-
-	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-		//User not login. Show error dialog.
-		alert("Unable to perform operation as user is not currently loggedIn.");
-	}else{
-		//User is login. Continue login
-		
-		if(confirm("Are you sure you want to logout?") == true){
-			//Ok button clicked
-			networkState = checkConnection();
-			if (networkState == 'No network connection') {
-				alert("Please check your internet connection.");
-			}else{
-		    	var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
-			$.ajax({
-				type : 'POST',
-				url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
-				beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-				crossDomain : true,
-				data : JSON.stringify(data),
-				dataType : 'json',
-				contentType: "application/json",
-				success : function(data){
-					document.getElementById("logoutbtn").innerHTML = "Login";
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+data.message);
-					window.localStorage.removeItem("user_user_id");
-					var prflImgPath = window.localStorage.getItem("profileImgPath");
-					if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
-					}else{
-						window.localStorage.removeItem("profileImgPath");
-					}
-				},error : function(xhr) {
-					var jsonResponse = JSON.parse(xhr.responseText);
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+jsonResponse.message);
-				}
-			});
-		    }
-			
-			
-		}else{
-			//Cancel button clicked
-			//Do nothing.
-		}
-	}
+    var lsItem = window.localStorage.getItem("user_user_id");
+    if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+        //User not login. Show error dialog.
+        window.localStorage.setItem("SearchPage", "Yes");
+        window.open("register.html");
+    }else{
+        //User is login. Continue login
+        
+        
+        navigator.notification.confirm(
+                                       'Are you sure you want to logout?',  // message
+                                       function(buttonIndex){
+                                       
+                                       switch (buttonIndex)
+                                       {
+                                       case 0:
+                                       break;
+                                       case 1:
+                                       
+                                       //Ok button clicked
+                                       networkState = checkConnection();
+                                       if (networkState == 'No network connection') {
+                                       navigator.notification.alert(
+                                                                    'Please check your internet connection.',  // message
+                                                                    function(){},         // callback
+                                                                    'Alert',            // title
+                                                                    'OK'                  // buttonName
+                                                                    );
+                                       return false;
+                                       }else{
+                                       var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
+                                       $.ajax({
+                                              type : 'POST',
+                                              url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
+                                              beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+                                              crossDomain : true,
+                                              data : JSON.stringify(data),
+                                              dataType : 'json',
+                                              contentType: "application/json",
+                                              success : function(data){
+                                              document.getElementById("logoutbtn").innerHTML = "Login";
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              
+                                              navigator.notification.alert(
+                                                                           ""+data.message,  // message
+                                                                           function(){
+                                                                           
+                                                                           window.localStorage.removeItem("user_user_id");
+                                                                           var prflImgPath = window.localStorage.getItem("profileImgPath");
+                                                                           if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
+                                                                           }else{
+                                                                           window.localStorage.removeItem("profileImgPath");
+                                                                           }
+                                                                           
+                                                                           },         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              },error : function(xhr) {
+                                              var jsonResponse = JSON.parse(xhr.responseText);
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              navigator.notification.alert(
+                                                                           ""+jsonResponse.message,  // message
+                                                                           function(){},         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              }
+                                              });
+                                       }
+                                       
+                                       break;
+                                       
+                                       }
+                                       
+                                       },         // callback
+                                       'Alert',            // title
+                                       ['Confirm'  ,'Cancel']
+                                       // buttonName
+                                       );
+        
+    }
 }
 
 function changecurrencyUSD(){

@@ -8,8 +8,14 @@ function onDeviceReady(){
 	}else{
 		networkState = checkConnection();
 		if (networkState == 'No network connection') {
-			alert("Please check your internet connection.");
-		}else{
+            navigator.notification.alert(
+                                         "Please check your internet connection.",  // message
+                                         function(){},         // callback
+                                         'Alert',            // title
+                                         'OK'                  // buttonName
+                                         );
+            return false;
+        }else{
 	    	fetchhoteltype();
 	    }
 		
@@ -77,14 +83,22 @@ function chooseprice(){
 	var htlSel = window.localStorage.getItem("selhotelid");
 	
 	if(htlSel === undefined || htlSel === null || htlSel.length === 0){
-		alert("Please select hotel type.");
+        
+        navigator.notification.alert(
+                                     "Please select hotel type.",  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        return false;
+        
 	}else{
-		window.open("choose-price-test.html");
+		window.open("select-area.html");
 	}
 }
 
 function backButton(){
-    navigator.app.backHistory();
+    history.go(-1);navigator.app.backHistory();
 }
 
 function fetchhoteltype(){
@@ -125,7 +139,15 @@ function fetchhoteltype(){
 			},
 			error: function(xhr, status, error) { 
 				document.getElementById("loadingimg").style.display = "none";
-				alert('Error !!'); 
+				
+               
+               navigator.notification.alert(
+                                            'Error !!',  // message
+                                            function(){},         // callback
+                                            'Alert',            // title
+                                            'OK'                  // buttonName
+                                            );
+               
 			},
 			async: true,
 			cache: false
@@ -145,64 +167,111 @@ function bookingFoot(){
 }
 
 function changeLanguageBtn(){
-	if(confirm("Change language to Arabic.") == true){
-		//Ok button clicked.
-		window.localStorage.setItem("selectedLanguage", "Arb");
-		window.location.replace("../arabic/select-hotel-test.html");
-	}else{
-		//Cancel button clicked.
-	}
+    navigator.notification.confirm(
+                                   'Change language to Arabic.',  // message
+                                   function(buttonIndex){
+                                   
+                                   switch (buttonIndex)
+                                   {
+                                   case 0:
+                                   break;
+                                   case 1:
+                                   window.localStorage.setItem("selectedLanguage", "Arb");
+                                   window.location.replace("../arabic/search.html");
+                                   break;}
+                                   
+                                   },         // callback
+                                   'Alert',            // title
+                                   ['Confirm'  ,'Cancel']
+                                   // buttonName
+                                   );
 }
 
 function logoutUser(){
-	var lsItem = window.localStorage.getItem("user_user_id");
-
-	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-		//User not login. Show error dialog.
-		window.localStorage.setItem("SelectHotel", "Yes");
-		window.open("register.html");
-	}else{
-		//User is login. Continue login
-		
-		if(confirm("Are you sure you want to logout?") == true){
-			//Ok button clicked
-			networkState = checkConnection();
-			if (networkState == 'No network connection') {
-				alert("Please check your internet connection.");
-			}else{
-		    	var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
-			$.ajax({
-				type : 'POST',
-				url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
-				beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-				crossDomain : true,
-				data : JSON.stringify(data),
-				dataType : 'json',
-				contentType: "application/json",
-				success : function(data){
-					document.getElementById("logoutbtn").innerHTML = "Login";
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+data.message);
-					window.localStorage.removeItem("user_user_id");
-					var prflImgPath = window.localStorage.getItem("profileImgPath");
-					if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
-					}else{
-						window.localStorage.removeItem("profileImgPath");
-					}
-				},error : function(xhr) {
-					var jsonResponse = JSON.parse(xhr.responseText);
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+jsonResponse.message);
-				}
-			});
-		    }
-			
-			
-		}else{
-			//Cancel button clicked
-			//Do nothing.
-		}
-	}
+    var lsItem = window.localStorage.getItem("user_user_id");
+    if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+        //User not login. Show error dialog.
+        window.localStorage.setItem("SearchPage", "Yes");
+        window.open("register.html");
+    }else{
+        //User is login. Continue login
+        
+        
+        navigator.notification.confirm(
+                                       'Are you sure you want to logout?',  // message
+                                       function(buttonIndex){
+                                       
+                                       switch (buttonIndex)
+                                       {
+                                       case 0:
+                                       break;
+                                       case 1:
+                                       
+                                       //Ok button clicked
+                                       networkState = checkConnection();
+                                       if (networkState == 'No network connection') {
+                                       navigator.notification.alert(
+                                                                    'Please check your internet connection.',  // message
+                                                                    function(){},         // callback
+                                                                    'Alert',            // title
+                                                                    'OK'                  // buttonName
+                                                                    );
+                                       return false;
+                                       }else{
+                                       var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
+                                       $.ajax({
+                                              type : 'POST',
+                                              url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
+                                              beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+                                              crossDomain : true,
+                                              data : JSON.stringify(data),
+                                              dataType : 'json',
+                                              contentType: "application/json",
+                                              success : function(data){
+                                              document.getElementById("logoutbtn").innerHTML = "Login";
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              
+                                              navigator.notification.alert(
+                                                                           ""+data.message,  // message
+                                                                           function(){
+                                                                           
+                                                                           window.localStorage.removeItem("user_user_id");
+                                                                           var prflImgPath = window.localStorage.getItem("profileImgPath");
+                                                                           if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
+                                                                           }else{
+                                                                           window.localStorage.removeItem("profileImgPath");
+                                                                           }
+                                                                           
+                                                                           },         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              },error : function(xhr) {
+                                              var jsonResponse = JSON.parse(xhr.responseText);
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              navigator.notification.alert(
+                                                                           ""+jsonResponse.message,  // message
+                                                                           function(){},         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              }
+                                              });
+                                       }
+                                       
+                                       break;
+                                       
+                                       }
+                                       
+                                       },         // callback
+                                       'Alert',            // title
+                                       ['Confirm'  ,'Cancel']
+                                       // buttonName
+                                       );
+        
+    }
 }
 
 function changecurrencyUSD(){

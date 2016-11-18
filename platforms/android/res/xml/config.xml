@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="appsmiths.estays" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="1" id="appsmiths.estays" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="ContactsPhoneNumbers">
+        <param name="android-package" value="com.dbaq.cordova.contactsPhoneNumbers.ContactsManager" />
+    </feature>
     <feature name="Battery">
         <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
     </feature>
@@ -12,9 +15,6 @@
     <feature name="DatePickerPlugin">
         <param name="android-package" value="com.plugin.datepicker.DatePickerPlugin" />
     </feature>
-    <feature name="Device">
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>
@@ -24,6 +24,15 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
+    <feature name="FacebookConnectPlugin">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <access origin="https://m.facebook.com" />
+    <access origin="https://graph.facebook.com" />
+    <access origin="https://api.facebook.com" />
+    <access origin="https://*.fbcdn.net" />
+    <access origin="https://*.akamaihd.net" />
     <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
         <param name="onload" value="true" />
@@ -49,10 +58,6 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <feature name="SplashScreen">
-        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
-        <param name="onload" value="true" />
-    </feature>
     <feature name="StatusBar">
         <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
@@ -64,13 +69,36 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="PushNotification">
-        <param name="android-package" value="com.adobe.phonegap.push.PushPlugin" />
+    <feature name="SQLitePlugin">
+        <param name="android-package" value="io.sqlc.SQLitePlugin" />
     </feature>
-    <name>estays1</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
+    <feature name="TwitterConnect">
+        <param name="android-package" value="com.manifestwebdesign.twitterconnect.TwitterConnect" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="GooglePlus">
+        <param name="android-package" value="nl.xservices.plugins.GooglePlus" />
+        <param name="onload" value="true" />
+    </feature>
+    <access origin="https://accounts.google.com/*" />
+    <feature name="Keyboard">
+        <param name="android-package" onload="true" value="org.apache.cordova.labs.keyboard.Keyboard" />
+    </feature>
+    <name>Estays</name>
+    <description>Book, Pay, Enjoy your stay</description>
     <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
     <content src="index.html" />
+    <gap:plugin name="twitter-connect-plugin" source="pgb" spec="0.5.0">
+        <param name="FABRIC_KEY" value="452b22294a74f5bed2eb28b973ef20fa7d3550fb" />
+    </gap:plugin>
+    <gap:plugin source="git" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
+        <param name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.6747841157-e9np87eko1avl53qjvgise91ngv6u0c2" />
+    </gap:plugin>
     <icon src="icon.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -79,27 +107,31 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
-    <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
-    <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
-    <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
-    <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-    <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-    <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-    <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-    <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-    <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-    <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-    <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-    <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-    <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-    <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-    <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-    <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    <icon density="ldpi" src="www/res/icon/android/36.png" />
+    <icon density="mdpi" src="www/res/icon/android/48.png" />
+    <icon density="hdpi" src="www/res/icon/android/72.png" />
+    <icon density="xhdpi" src="www/res/icon/android/96.png" />
+    <icon density="xxhdpi" src="www/res/icon/android/144.png" />
+    <icon density="xxxhdpi" src="www/res/icon/android/144.png" />
+    <splash density="land-ldpi" src="www/img/logo.png" />
+    <splash density="land-mdpi" src="www/img/logo.png" />
+    <splash density="land-hdpi" src="www/img/logo.png" />
+    <splash density="land-xhdpi" src="www/img/logo.png" />
+    <splash density="land-xxhdpi" src="www/img/logo.png" />
+    <splash density="land-xxxhdpi" src="www/img/logo.png" />
+    <splash density="port-ldpi" src="www/img/logo.png" />
+    <splash density="port-mdpi" src="www/img/logo.png" />
+    <splash density="port-hdpi" src="www/img/logo.png" />
+    <splash density="port-xhdpi" src="www/img/logo.png" />
+    <splash density="port-xxhdpi" src="www/img/logo.png" />
+    <splash density="port-xxxhdpi" src="www/img/logo.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="15" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="KeyboardShrinksView" value="false" />
+    <preference name="orientation" value="portrait" />
+    <preference name="TwitterConsumerKey" value="7NePR7tsnThW42g2eFg0WlipN" />
+    <preference name="TwitterConsumerSecret" value="QGoFzCPYwKwgmz0Rj96dJreebg5XzyeRKu43yIhVJWSVmaExPC" />
 </widget>

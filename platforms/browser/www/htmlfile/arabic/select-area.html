@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+<!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+<link rel="stylesheet" type="text/css" href="../../css/arabic/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/core.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/responsive.css" />
+<link rel="stylesheet" type="text/css" href="../../css/arabic/index.css" />
+<style type="text/css">
+#loadingimg{
+            display: block;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/gif-load.gif') 50% 50% no-repeat rgba(192, 192, 192, 0.5);
+        }
+.radioButtons input[type="radio"] + label{
+font-size : 15px;
+} 		
+</style>
+<title>Estays :: Booking</title>
+</head>
+
+<body>
+<div id="loadingimg" style="display:none">
+        </div>
+<div id="outer"><div class="fullWidth">
+  <div class="title-text top-fixed">
+    <div class="back"><a onclick="backButton();" href="javascript:void(0)"><img src="../../img/backarrow.png" alt=""> الى الخلف</a></div>
+    <h4>اختر المنطقة</h4>
+    <a href="javascript:void(0)" class="navbtn"><img src="../../img/navigator.png" alt=""> </a>
+      <div class="navOuter">
+        <h6>عملة</h6>
+        <div class="radioButtons01">
+          <input type="radio" id="radio01" name="radio" data-role="none"/>
+          <label onclick="changecurrencySR();" for="radio01"><span></span>ريال سعودى</label>
+        </div>
+        <div class="radioButtons01">
+          <input type="radio" id="radio02" name="radio" data-role="none"/>
+          <label onclick="changecurrencyUSD();" for="radio02"><span></span>دولار أمريكي</label>
+        </div>
+        
+        <div class="linksButtons"> <a href="javascript:void(0)" onclick="checkbidstatus();">التحقق من حالة الحجز</a><a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
+      </div>
+  </div>
+</div>
+<div class="top-gap"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="blue-top">اختر المنطقة</div>
+        <div class="white-box noPadding">
+			<div style="width:100%;height:250px" id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="noPadding">
+			<div id="arealist">
+				
+			</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center register-button margtop margbot"> <a href="javascript:void(0)"><img onclick="selectarea();" alt="#" src="../../img/next.png"></a> </div>
+    <div></div><br/><br/>
+  </div>
+</div>
+<div class="botm-gap">&nbsp;<br/><br/></div>
+<div class="fullWidth">
+  <div class="bottomLinks"> <a onclick="opensearchfoot();" href="javascript:void(0)"> <span class="searchimg"></span> <br>
+    بحث</a> <a class="active" href="javascript:void(0)"><span class="Bookinging"></span> <br>
+    حجوزات</a> <a onclick="bookingFoot();" href="javascript:void(0)"><span class="Notificationimg"><span style="display: none;" class="notificationnos" id="notification_count"></span></span> <br>
+    الإشعارات</a> <a onclick="openprofilefoot();" href="javascript:void(0)"><span class="Profileimg"></span> <br>
+    الملف الشخصي</a> </div>
+</div>
+<script type="text/javascript" src="../../cordova.js"></script>
+<script type="text/javascript" src="../../js/english/jquery-1.12.2.min.js"></script> 
+<script type="text/javascript" src="../../js/english/jquery.mobile-1.4.5.min.js"></script> 
+<!-- <script type="text/javascript" src="../../js/arabic/bootstrap.js"></script> --> 
+<script type="text/javascript" src="../../js/arabic/bootstrap.min.js"></script> 
+<script type="text/javascript" src="../../js/arabic/core.js"></script> 
+<script type="text/javascript" src="../../js/arabic/selectarea.js"></script>
+</div>
+
+<script type="text/javascript">
+
+var map;
+var geocoder;
+var country;
+var city;
+var cityId;
+var nearbylocations;
+var latlong;
+var curlocation;
+var search_radius = [];
+var info = [];
+var val;
+var bounds;
+var infowindow;
+var delay;
+var locations = [];
+        function initMap() {
+            country = window.localStorage.getItem("countryVisiting");
+            city = window.localStorage.getItem("cityVisiting");
+            cityId = window.localStorage.getItem("cityVisitingId");
+			geocoder = new google.maps.Geocoder();
+			address = city+','+country;
+			//address = 'chandigarh,india';
+			geocoder.geocode({'address': address}, function(results, status) {
+				 if (status === google.maps.GeocoderStatus.OK) {
+					latlong = results[0].geometry.location;
+				 }
+			});
+			map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: latlong
+            });
+            geocoder = new google.maps.Geocoder();
+			geocodeAddress(geocoder,map,address);
+        }
+
+
+        function geocodeAddress(geocoder, resultsMap, address) {
+            document.getElementById("loadingimg").style.display = "block";
+            geocoder.geocode({'address': address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    resultsMap.setCenter(results[0].geometry.location);
+					
+					$.ajax({
+						type: 'GET',
+						url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/nearByarea',
+						beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+						crossDomain: true,
+						contentType: "application/json",
+						data: {cityId:cityId},
+						//data: {cityId:1947},
+						dataType: "json",
+						success: function(val) {
+						
+							for (var i = 0; i < val.nearbyareaList.length; i++){
+								locations[i] = val.nearbyareaList[i].nearByLocation;
+								$('#arealist').append("<div class='radioButtons'>" + " <input name='"+val.nearbyareaList[i].nearByLocation+"' id='"+i+"' type='radio' class='areanamebtn' /><label for='"+i+"'><span></span><div>"+val.nearbyareaList[i].nearByLocation+"</div></label></div>");
+							}
+								  theNext();
+								  delay = 100;
+								  bounds = new google.maps.LatLngBounds();
+
+								  
+								$(".areanamebtn").on("click", function(){
+									$('.areanamebtn').prop('checked', false);
+									$(this).prop('checked', true);
+									var areaVisiting = $(this).attr('name');
+
+									console.log("areaVisiting : "+areaVisiting);
+
+									window.localStorage.setItem("areaVisiting", $(this).attr('name'));
+								});
+						},
+						error: function(xhr) { 
+							var jsonResponse = JSON.parse(xhr.responseText);
+							document.getElementById("loadingimg").style.display = "none";
+							
+                           navigator.notification.alert(
+                                                        ""+jsonResponse.message,  // message
+                                                        function(){},         // callback
+                                                        'Alert',            // title
+                                                        'OK'                  // buttonName
+                                                        );
+
+                           $('#arealist').append("<div class='radioButtons'>" + " <input type='radio' checked='checked' class='areanamebtn' name='"+city+','+country+"'/><label><span></span>"+city+','+country+"</label></div>");
+							
+							geocoder.geocode({'address': city+','+country}, function(results, status) {
+								if (status === google.maps.GeocoderStatus.OK) {
+									latlong = results[0].geometry.location;
+									search_radius = new google.maps.Circle({
+														strokeColor: '#FF0000',
+														strokeOpacity: 0.8,
+														strokeWeight: 2,
+														fillColor: '#FF0000',
+														fillOpacity: 0.35,
+														map: resultsMap,
+														center: latlong,
+														radius: 100 * 100
+													  });
+									google.maps.event.addListener(search_radius, 'click', function() {
+										selectFromCircle(city+','+country);
+									});
+								}
+							});							
+							
+						},
+						async: true,
+						cache: false
+					});
+                    document.getElementById("loadingimg").style.display = "none";
+                } else {
+                	document.getElementById("loadingimg").style.display = "none";
+                             
+                             navigator.notification.alert(
+                                                          'Unable to locate address. Please try again.',  // message
+                                                          function(){},         // callback
+                                                          'Alert',            // title
+                                                          'OK'                  // buttonName
+                                                          );
+                }
+            });
+        }
+
+        function geocodePosition(pos){
+            geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                latLng: pos
+            }, 
+            function(results, status){
+                if (status == google.maps.GeocoderStatus.OK){
+                    var frmtdAdd = results[4].formatted_address;
+                    if(frmtdAdd === undefined || frmtdAdd === null || frmtdAdd.length === 0){
+                             
+                             navigator.notification.alert(
+                                                          'Unable to determine selected location. Please try again.',  // message
+                                                          function(){},         // callback
+                                                          'Alert',            // title
+                                                          'OK'                  // buttonName
+                                                          );
+                             
+                    }else{
+                    	document.getElementById('ci_country_city').innerHTML = results[4].formatted_address;
+                        }
+                }
+                else{
+                             navigator.notification.alert(
+                                                          'Unable to determine selected location. Please try again.',  // message
+                                                          function(){},         // callback
+                                                          'Alert',            // title
+                                                          'OK'                  // buttonName
+                                                          );                }
+            });
+        }
+		
+		function selectFromCircle(area){
+			$('.areanamebtn').prop('checked', false);
+			$(".areanamebtn:radio[name='"+area+"']").prop('checked', true);
+			console.log("areaVisiting : "+area);
+			window.localStorage.setItem("areaVisiting", area);
+		}
+		function geocodeAddress1(address) {
+			geocoder.geocode({address:address}, function (results,status)
+			  { 
+				 if (status == google.maps.GeocoderStatus.OK) {
+				  var p = results[0].geometry.location;
+				  var lat=p.lat();
+				  var lng=p.lng();
+				  createMarker(address,lat,lng);
+				}
+				else {
+				   if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+					nextAddress--;
+					delay++;
+				  } else {
+								}   
+				}
+				theNext();
+			  }
+			);
+		  }
+
+		  function createMarker(add,lat,lng) {
+		   var contentString = add;
+		   var marker = new google.maps.Marker({
+			 position: new google.maps.LatLng(lat,lng),
+			 map: map,
+				   });
+			infowindow = new google.maps.InfoWindow();
+		  google.maps.event.addListener(marker, 'click', function() {
+			 infowindow.setContent(contentString); 
+			 infowindow.open(map,marker);
+			 selectFromCircle(add);
+		   });
+
+		   bounds.extend(marker.position);
+
+		 }	
+		  var nextAddress = 0;
+		  function theNext() {
+			if (nextAddress < locations.length) {
+			  setTimeout('geocodeAddress1("'+locations[nextAddress]+'")', delay);
+			  nextAddress++;
+			} else {
+			  map.fitBounds(bounds);
+			}
+		  }
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkAP6_nZQd3-sdQ_adLvcGG-d1Y22gKqg&callback=initMap"
+    async defer></script>
+</body>
+</html>

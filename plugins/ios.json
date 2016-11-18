@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.dbaq.cordova.contactsPhoneNumbers": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
@@ -17,6 +20,9 @@
             "PACKAGE_NAME": "appsmiths.estays"
         },
         "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-datepicker": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
         "cordova-plugin-device": {
@@ -31,6 +37,11 @@
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "252483618437910",
+            "APP_NAME": "Estays",
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
@@ -38,6 +49,10 @@
             "PACKAGE_NAME": "appsmiths.estays"
         },
         "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-googleplus": {
+            "REVERSED_CLIENT_ID": "com.googleusercontent.apps.6747841157-e9np87eko1avl53qjvgise91ngv6u0c2",
             "PACKAGE_NAME": "appsmiths.estays"
         },
         "cordova-plugin-inappbrowser": {
@@ -52,9 +67,6 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "appsmiths.estays"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
@@ -64,15 +76,27 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "6747841157",
+        "cordova-sqlite-storage": {
             "PACKAGE_NAME": "appsmiths.estays"
         },
-        "cordova-plugin-datepicker": {
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "twitter-connect-plugin": {
+            "FABRIC_KEY": "452b22294a74f5bed2eb28b973ef20fa7d3550fb",
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-keyboard": {
             "PACKAGE_NAME": "appsmiths.estays"
         }
     },
     "dependent_plugins": {
+        "cordova-android-support-v4": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "appsmiths.estays"
+        },
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "appsmiths.estays"
         },

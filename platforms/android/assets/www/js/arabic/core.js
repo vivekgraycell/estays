@@ -12,5 +12,6 @@ $(document).ready(function() {
 });	
     
 	
-
-
+function checkbidstatus(){
+	window.open("checkbidstatus.html");
+}

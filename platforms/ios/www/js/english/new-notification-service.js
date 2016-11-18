@@ -15,19 +15,17 @@ function onDeviceReady(){
 	}else{
 		
 		
-		var networkState = navigator.network.connection.type;
-
-	    var states = {};
-	    states[Connection.UNKNOWN]  = 'Unknown connection';
-	    states[Connection.ETHERNET] = 'Ethernet connection';
-	    states[Connection.WIFI]     = 'WiFi connection';
-	    states[Connection.CELL_2G]  = 'Cell 2G connection';
-	    states[Connection.CELL_3G]  = 'Cell 3G connection';
-	    states[Connection.CELL_4G]  = 'Cell 4G connection';
-	    states[Connection.NONE]     = 'No network connection';
-	    if (networkState == 'unknown' || networkState == 'none') {
-	    	alert("Please check your internet connection.");
-	    }else{
+			networkState = checkConnection();
+			if (networkState == 'No network connection') {
+                navigator.notification.alert(
+                                             'Please check your internet connection.',  // message
+                                             function(){},         // callback
+                                             'Alert',            // title
+                                             'OK'                  // buttonName
+                                             );
+                
+                return false;
+            }else{
 //	    	newNotificationCheck();
 //	    	getNotificationFromServer();
 	    	checkBidInfoNotification();
@@ -57,6 +55,21 @@ function onDeviceReady(){
 	}else{
 		document.getElementById("logoutbtn").innerHTML = "Logout";
 	}
+}
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    return states[networkState];
 }
 
 
@@ -126,83 +139,115 @@ function startTimer(duration, display) {
 }
 
 function backButton(){
-    navigator.app.backHistory();
+    history.go(-1);navigator.app.backHistory();
 }
 
 function logoutUser(){
-	var lsItem = window.localStorage.getItem("user_user_id");
-
-	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-		//User not login. Show error dialog.
-//		alert("Unable to perform operation as user is not currently loggedIn.");
-		window.localStorage.setItem("NotificationPage", "Yes");
-		window.open("register.html");
-	}else{
-		//User is login. Continue login
-		
-		if(confirm("Are you sure you want to logout?") == true){
-			//Ok button clicked
-			
-			var networkState = navigator.network.connection.type;
-
-		    var states = {};
-		    states[Connection.UNKNOWN]  = 'Unknown connection';
-		    states[Connection.ETHERNET] = 'Ethernet connection';
-		    states[Connection.WIFI]     = 'WiFi connection';
-		    states[Connection.CELL_2G]  = 'Cell 2G connection';
-		    states[Connection.CELL_3G]  = 'Cell 3G connection';
-		    states[Connection.CELL_4G]  = 'Cell 4G connection';
-		    states[Connection.NONE]     = 'No network connection';
-
-//		    alert("networkState "+networkState);
-
-		    if (networkState == 'unknown' || networkState == 'none') {
-		    	alert("Please check your internet connection.");
-		    }else{
-		    	var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
-			$.ajax({
-				type : 'POST',
-				url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
-				beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-				crossDomain : true,
-				data : JSON.stringify(data),
-				dataType : 'json',
-				contentType: "application/json",
-				success : function(data){
-					document.getElementById("logoutbtn").innerHTML = "Login";
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+data.message);
-					window.localStorage.removeItem("user_user_id");
-					var prflImgPath = window.localStorage.getItem("profileImgPath");
-					if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
-					}else{
-						window.localStorage.removeItem("profileImgPath");
-					}
-					window.location.replace("search.html");
-				},error : function(xhr) {
-					var jsonResponse = JSON.parse(xhr.responseText);
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+jsonResponse.message);
-				}
-			});
-		    }
-			
-			
-		}else{
-			//Cancel button clicked
-			//Do nothing.
-		}
-	}
+    var lsItem = window.localStorage.getItem("user_user_id");
+    if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+        //User not login. Show error dialog.
+        window.localStorage.setItem("SearchPage", "Yes");
+        window.open("register.html");
+    }else{
+        //User is login. Continue login
+        
+        
+        navigator.notification.confirm(
+                                       'Are you sure you want to logout?',  // message
+                                       function(buttonIndex){
+                                       
+                                       switch (buttonIndex)
+                                       {
+                                       case 0:
+                                       break;
+                                       case 1:
+                                       
+                                       //Ok button clicked
+                                       networkState = checkConnection();
+                                       if (networkState == 'No network connection') {
+                                       navigator.notification.alert(
+                                                                    'Please check your internet connection.',  // message
+                                                                    function(){},         // callback
+                                                                    'Alert',            // title
+                                                                    'OK'                  // buttonName
+                                                                    );
+                                       return false;
+                                       }else{
+                                       var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
+                                       $.ajax({
+                                              type : 'POST',
+                                              url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
+                                              beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+                                              crossDomain : true,
+                                              data : JSON.stringify(data),
+                                              dataType : 'json',
+                                              contentType: "application/json",
+                                              success : function(data){
+                                              document.getElementById("logoutbtn").innerHTML = "Login";
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              
+                                              navigator.notification.alert(
+                                                                           ""+data.message,  // message
+                                                                           function(){
+                                                                           
+                                                                           window.localStorage.removeItem("user_user_id");
+                                                                           var prflImgPath = window.localStorage.getItem("profileImgPath");
+                                                                           if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
+                                                                           }else{
+                                                                           window.localStorage.removeItem("profileImgPath");
+                                                                           }
+                                                                           
+                                                                           },         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              },error : function(xhr) {
+                                              var jsonResponse = JSON.parse(xhr.responseText);
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              navigator.notification.alert(
+                                                                           ""+jsonResponse.message,  // message
+                                                                           function(){},         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              }
+                                              });
+                                       }
+                                       
+                                       break;
+                                       
+                                       }
+                                       
+                                       },         // callback
+                                       'Alert',            // title
+                                       ['Confirm'  ,'Cancel']
+                                       // buttonName
+                                       );
+        
+    }
 }
 
 function changeLanguageBtn(){
-	if(confirm("Change language to Arabic.") == true){
-		//Ok button clicked.
-		window.localStorage.setItem("selectedLanguage", "Arb");
-		window.location.replace("../arabic/new-notification-page.html");
-	}else{
-		//Cancel button clicked.
-	}
+    navigator.notification.confirm(
+                                   'Change language to Arabic.',  // message
+                                   function(buttonIndex){
+                                   
+                                   switch (buttonIndex)
+                                   {
+                                   case 0:
+                                   break;
+                                   case 1:
+                                   window.localStorage.setItem("selectedLanguage", "Arb");
+                                   window.location.replace("../arabic/search.html");
+                                   break;}
+                                   
+                                   },         // callback
+                                   'Alert',            // title
+                                   ['Confirm'  ,'Cancel']
+                                   // buttonName
+                                   );
 }
 
 function openProfileFoot(){
@@ -254,12 +299,7 @@ function checkBidInfoNotification(){
 	 * check one hour date of clicked bid id
 	 */
 	
-	var loginStatus = window.localStorage.getItem("user_user_id");
-	if(loginStatus === undefined || loginStatus === null || loginStatus.length === 0) {
-		//User is not logged In, open registration page
 		window.localStorage.setItem("UserBid", "Yes");
-		window.open("register.html");
-	}else{
 		var clickedBidIdFrmList = window.localStorage.getItem("clicked_booked_id");
 		if(clickedBidIdFrmList === undefined || clickedBidIdFrmList === null || clickedBidIdFrmList.length === 0){
 			/**
@@ -407,20 +447,20 @@ function checkBidInfoNotification(){
 			}
 			//Testing code ends
 		}
-	}
+	
 }
 
 function getNotificationFromServer(){
 	var lsItem = window.localStorage.getItem("user_user_id");
 	var bidid = window.localStorage.getItem("clicked_booked_id");
-	var data = {userId:lsItem, bidId:bidid, offset:'0'};
+	var data = {bidId:bidid, offset:'0'};
 	console.log("user_id", lsItem);
 	$.ajax({
-		type: 'POST',
+		type: 'GET',
 		url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/hotelBidInfo',
 		beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
 		crossDomain: true,
-		data: JSON.stringify(data),
+		data: data,
 		dataType : 'json',
 		contentType: "application/json",
 		success: function(data){
@@ -444,8 +484,8 @@ function getNotificationFromServer(){
 					                  "August", "September", "October",
 					                  "November", "December"
 					                ];
-					
-					var date = new Date(hotelBidInfo.dateCreated);
+					var dateString = hotelBidInfo.dateCreated;
+					var date = new Date(dateString.replace(' ', 'T'));
 					var day = date.getDate();
 					var monthIndex = date.getMonth();
 					var year = date.getFullYear();
@@ -465,7 +505,7 @@ function getNotificationFromServer(){
 					}
 					
 					var noImge = '../../img/no_image.jpg';
-					$("#notificationlisthotel").append("<li data-hotelid="+ hotelBidInfo.hotelId +" id="+ hotelBidInfo.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelBidInfo.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelBidInfo.hotelName+"</div><div class='text'>"+ hotelBidInfo.linkstatus+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+					$("#notificationlisthotel").append("<li data-hotelid="+ hotelBidInfo.hotelId +" id="+ hotelBidInfo.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelBidInfo.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelBidInfo.hotelName+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
 					
 					$('img')
 					.error(function(){
@@ -498,14 +538,14 @@ function getNotificationFromServer(){
 				if($(document).height() - win.height() == win.scrollTop()){
 					var lsItem = window.localStorage.getItem("user_user_id");
 					var bidid = window.localStorage.getItem("clicked_booked_id");
-					var data = {userId:lsItem, bidId:bidid, offset:firstOffset};
+					var data = {bidId:bidid, offset:firstOffset};
 //					var data = {userId:lsItem, offset:firstOffset};
 					$.ajax({
-						type: 'POST',
+						type: 'GET',
 						url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/hotelBidInfo',
 						beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
 						crossDomain: true,
-						data: JSON.stringify(data),
+						data: data,
 						dataType : 'json',
 						contentType: "application/json",
 						success: function(data){
@@ -515,7 +555,7 @@ function getNotificationFromServer(){
 							$.each(hotels, function(index, hotelBidInfo) {
 									var noImge = '../../img/no_image.jpg';
 									
-									$("#notificationlisthotel").append("<li data-hotelid="+ hotelBidInfo.hotelId +" id="+ hotelBidInfo.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelBidInfo.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelBidInfo.hotelName+"</div><div class='text'>"+ hotelBidInfo.linkstatus+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+									$("#notificationlisthotel").append("<li data-hotelid="+ hotelBidInfo.hotelId +" id="+ hotelBidInfo.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelBidInfo.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelBidInfo.hotelName+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
 									
 									$('img')
 									.error(function(){

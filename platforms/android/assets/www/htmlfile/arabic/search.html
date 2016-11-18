@@ -50,6 +50,14 @@
    height: 30px;
    border-radius:2px;
  }
+  select,.nogreyBox{
+    width:100%;
+   overflow: hidden;
+   background: #F8F8F8;
+   border: 1px solid #DDDDDD;
+   height: 30px;
+   border-radius:2px;
+ }
 </style>
 <title>Estays :: Search</title>
 </head>
@@ -78,92 +86,90 @@
           <label onclick="changecurrencyUSD();" for="radio02"><span></span>دولار أمريكي</label>
         </div>
         
-        <div class="linksButtons"> <a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
+        <div class="linksButtons"> <a href="javascript:void(0)" onclick="checkbidstatus();">التحقق من حالة الحجز</a><a onclick="changeLanguageBtn();" href="javascript:void(0)">إعدادات</a> <a onclick="logoutUser();" href="javascript:void(0)" id="logoutbtn">خروج</a> </div>
       </div>
   </div>
 </div>
 <div class="top-gap"></div>
-<div class="container-fluid">
+<<div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
-      <div class="blueWhite-main">
+      <div class="blueWhite-main" id="countryblock">
         <div class="blue-top">البلد الذي تزوره</div>
         <div class="white-box">
           <!-- <p class="select-text">Select country</p> -->
-          <select style= "width:100%;height:35px" id="spinner_country_list">
-            </select><!-- <button style="margin-left:5px" type="submit" id="searchcountryonmap"/>Search</button><br><br> --><br>
+          <select style= "width:100%;height:35px;background-color:#fff;padding-left:10px" id="spinner_country_list">
+            </select><br>
+        </div>
+      </div>      
+	  <div class="blueWhite-main"  id="stateblock">
+        <div class="blue-top">الدولة التي تزورها</div>
+        <div class="white-box">
+          <!-- <p class="select-text">Select country</p> -->
+          <select style= "width:100%;height:35px;background-color:#fff;padding-left:10px" id="spinner_state_list">
+            </select><br>
         </div>
       </div>
-      <div class="blueWhite-main">
+      <div class="blueWhite-main"  id="cityblock">
         <div class="blue-top">المدينة التي تزورها</div>
-        <div class="white-box noPadding">
-        <div style="width:100%;height:250px" id="map"></div>
-          <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d26361250.667320684!2d-113.75533773453306!3d36.24128894212529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sdogget+place!5e0!3m2!1sen!2sin!4v1461060034362" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-        <div>
-        	<br>
-        	<div class="col-xs-12"><span class="theadinfo" id = "ci_country_city">مدينة</span></div>
-        	<!-- <input type="text" class="greyBox" name="ci_country_city"  placeholder="City" id = "ci_country_city"><br> -->
-            </div> 
+        <div class="white-box">
+        <!--<div style="width:100%;height:250px" id="map"></div>-->
+		<select style= "width:100%;height:35px;background-color:#fff;padding-left:10px" id="spinner_city_list"></select>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-6 full">
       <div class="blueWhite-main">
-        <div class="blue-top">تحقق في</div>
+        <div class="blue-top">عدد الليالي</div>
         <div class="white-box">
-          <div class="datepicker"> </div>
-          <div class="date"> <h5 class="date" id="check_in_dt_mth">حدد تاريخ</h5> <br>
+          <div class="datepicker">
+          </div>
+          <div class="date" onclick="checkInDatePick();">
+          <h5 class="date" id="check_in_dt_mth">حدد تاريخ</h5> <br>
             <span id="check_in_dt_yr"></span> </div>
-          <a class="calarrow" href="javascript:void(0)"><img onclick="checkInDatePick();" src="../../img/gray-right-arrow.png" alt=""></a> </div>
+          <a class="calarrow" href="javascript:void(0)"><img onclick="checkInDatePick();" src="../../img/gray-right-arrow.png" alt=""></a> <br><br><br><br><br></div>
       </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 full">
       <div class="blueWhite-main">
         <div class="blue-top">الدفع</div>
         <div class="white-box">
           <div class="datepicker"> </div>
-          <div class="date"><h5 class="date" id="check_out_dt_mth">حدد تاريخ</h5><br>
+          <div class="date" onclick="checkOutDatePick();"> 
+          <h5 class="date" id="check_out_dt_mth">حدد تاريخ</h5><br>
             <span id="check_out_dt_yr"></span> </div>
           <a class="calarrow" href="javascript:void(0)"><img onclick="checkOutDatePick();" src="../../img/gray-right-arrow.png" alt=""></a> </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
+  <div class="col-xs-12">
+      <div class="blueWhite-main">
+        <div class="blue-top">عدد الليالي</div>
+        <div class="white-box padding0">
+			<input type="number" class="greyBox" id= "et_no_of_nights" min="1" readonly />
+        </div>
+
+      </div>
+    </div>  
+	
+	<div class="col-xs-12">
       <div class="blueWhite-main">
         <div class="blue-top">نوع الغرفة</div>
-        
         <div class="white-box padding0">
         <select style= "width:100%;height:35px;padding-left: 15px;background-color: white;border: 1px solid #aeaeae; " id="room_type_spinner">
         </select>
         </div>
-       <!--  <div class="white-box padding0" id="rrbtns"> -->
-          <!-- <div class="radioButtons">
-            <input type="radio" id="radio01" name="radio" />
-            <label for="radio01"><span></span>مزدوج</label>
-          </div> -->
-          <!-- <div class="radioButtons">
-            <input type="radio" id="radio02" name="radio" />
-            <label for="radio02"><span></span>ثلاثي</label>
-          </div> -->
-          <!-- <div class="radioButtons">
-            <input type="radio" id="radio03" name="radio" checked="" />
-            <label for="radio03"><span></span>جناح صغير</label>
-          </div> -->
-          <!-- <div class="radioButtons last">
-            <input type="radio" id="radio04" name="radio" />
-            <label for="radio04"><span></span>جناح 2 غرفة نوم</label>
-          </div> -->
-        <!-- </div> -->
+
       </div>
     </div>
     <div class="col-xs-12">
       <div class="blueWhite-main">
         <div class="blue-top">عدد الغرف المطلوب</div>
         <div class="white-box">
-           <input type="number" class="greyBox" id= "et_room_required">
+          <input type="number" class="greyBox" min="1" id= "et_room_required">
         </div>
       </div>
     </div>
@@ -171,7 +177,8 @@
     <div></div>
   </div>
 </div>
-<div class="botm-gap"></div>
+
+<div class="botm-gap"><br/><br/></div>
 <div class="fullWidth">
   <div class="bottomLinks"> <a class="active" href="javascript:void(0)"> <span class="searchimg"></span> <br>
     بحث</a> <a onclick="openBookingFoot();" href="javascript:void(0)"><span class="Bookinging"></span> <br>
@@ -180,166 +187,12 @@
     الملف الشخصي</a> </div>
 </div>
 <script type="text/javascript">
-
-var map;
-var geocoder;
-
-        function initMap() {
-            // document.getElementById("id_five_star").checked = true;
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 5,
-                center: {lat: 20.5937, lng: 78.9629}
-            });
-
-            geocoder = new google.maps.Geocoder();
-
-            /*document.getElementById('geocodeCity').addEventListener('click', function() {
-                geocodeAddress(geocoder, map);
-            });*/
-
-            /*document.getElementById('geocountrycode').addEventListener('click', function()){
-                geocodeAddress(geocoder, map);
-            });*/
-
-            /* document.getElementById('searchcountryonmap').addEventListener('click', function(){
-                geocodeAddress(geocoder, map);
-            }); */
-
-            fetchCountryList();
-        }
-
-        function fetchCountryList(){
-        	$.ajax({
-//        		beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-        		type: 'GET',
-        		url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/countriesListing',
-        		beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-        		crossDomain: true,
-        		contentType: "application/json",
-        		data: '{}',
-        		dataType: "json",
-        		success: function(val) {
-        			for (var i = 0; i < val.countriesList.length; i++){
-        				var countryName = val.countriesList[i].countryName;
-
-        				/*$("#spinner_country_list").append($('<option>', {
-        					value:val.countriesList[i].countryId,
-        					text: val.countriesList[i].countryName
-        				}));*/
-
-        				$('#spinner_country_list').append("<option id='"+ val.countriesList[i].geoId +"' value='" + val.countriesList[i].geoName +"' text='" + val.countriesList[i].geoId + "'>"+val.countriesList[i].geoName+"</option>");
-
-        				// countryarr.push(val.countriesList[i].countryName);	// adding items in string array
-        			}
-
-        			geocodeAddress(geocoder, map);
-
-        			/* $('#spinner_country_list').click(function(v){
-        				geocodeAddress(geocoder, map);
-        				  }); */
-
-        				  $("#spinner_country_list").change(function() {
-              				geocodeAddress(geocoder, map);
-              		    });
-        			document.getElementById("loadingimg").style.display = "none";
-//        			document.getElementById("loadingimg").style.display = "none";
-
-        			//displaying string array length
-//        			alert("country arr length : "+ countryarr.length);
-
-
-        			/*
-        			$("input[name=countriesls]").focusout(function(){
-                    //alert($(this).text);
-                    var opt = $('option[value="'+$(this).val()+'"]');
-                    if (opt.length > 0) {
-                        window.localStorage.setItem("sel_country_id_text)", opt.attr('text'));
-                        alert(""+opt.attr('text'));
-                    }*/
-                    
-                    // alert(opt.length ? opt.attr('text') : '0');
-                // });
-        			/*$( "#ci_country_visiting" ).autocomplete({
-        				source: countryarr
-        			});*/
-        		},
-        		error: function(xhr) { 
-//        			document.getElementById("loadingimg").style.display = "none";
-        			var jsonResponse = JSON.parse(xhr.responseText);
-        			document.getElementById("loadingimg").style.display = "none";
-        			alert(""+jsonResponse.message);
-        		},
-        		async: true,
-        		cache: false
-        	});
-        }
-
-        function geocodeAddress(geocoder, resultsMap) {
-            // var address = document.getElementById('ci_country_visiting').value;
-            // var address = document.getElementById('lscountrynbame').value;
-            
-            document.getElementById("loadingimg").style.display = "block";
-
-            var spin_country_list = document.getElementById("spinner_country_list");
-            var address = spin_country_list.options[spin_country_list.selectedIndex].text;
-
-            geocoder.geocode({'address': address}, function(results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    resultsMap.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: resultsMap,
-                        draggable:true,
-                        animation: google.maps.Animation.DROP,
-                        position: results[0].geometry.location
-                    });
-
-                    google.maps.event.addListener(marker, 'dragend', function() 
-                    {
-                        geocodePosition(marker.getPosition());
-                    });
-                    document.getElementById("loadingimg").style.display = "none";
-
-                } else {
-                	document.getElementById("loadingimg").style.display = "none";
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
-
-        /*results[0].formatted_address: "275-291 Bedford Ave, Brooklyn, NY 11211, USA",
-        results[1].formatted_address: "Williamsburg, NY, USA",
-        results[2].formatted_address: "New York 11211, USA",
-        results[3].formatted_address: "Kings, New York, USA",
-        results[4].formatted_address: "Brooklyn, New York, USA",
-        results[5].formatted_address: "New York, New York, USA",
-        results[6].formatted_address: "New York, USA",
-        results[7].formatted_address: "United States"*/
-
-        function geocodePosition(pos){
-            geocoder = new google.maps.Geocoder();
-            geocoder.geocode({
-                latLng: pos
-            }, 
-            function(results, status){
-                if (status == google.maps.GeocoderStatus.OK){
-                    // alert(results[0].formatted_address);
-                	var frmtdAdd = results[4].formatted_address;
-                    if(frmtdAdd === undefined || frmtdAdd === null || frmtdAdd.length === 0){
-                        alert("Unable to determine selected location. Please try again.");
-                    }else{
-                    document.getElementById('ci_country_city').innerHTML = results[4].formatted_address;
-                    }
-                }
-                else{
-                    alert('Unable to determine selected location. Please try again.');
-                }
-            });
-        }
-        </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkAP6_nZQd3-sdQ_adLvcGG-d1Y22gKqg&callback=initMap"
-    async defer></script>
-
+$(function() {
+setTimeout(
+  function(){
+    fetchCountryList();
+  }, 1000);
+});
+</script>
 </body>
 </html>

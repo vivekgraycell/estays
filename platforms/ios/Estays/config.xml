@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="1" id="appsmiths.estays" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="ContactsPhoneNumbers">
+        <param name="ios-package" value="CDVContactsPhoneNumbers" />
+    </feature>
+    <feature name="Battery">
+        <param name="ios-package" value="CDVBattery" />
+    </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
+    <feature name="Contacts">
+        <param name="ios-package" value="CDVContacts" />
+    </feature>
+    <feature name="DatePicker">
+        <param name="ios-package" value="DatePicker" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="ios-package" value="CDVAccelerometer" />
+    </feature>
+    <feature name="Compass">
+        <param name="ios-package" value="CDVCompass" />
+    </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="FacebookConnectPlugin">
+        <param name="ios-package" value="FacebookConnectPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <plugin name="FacebookConnectPlugin" value="FacebookConnectPlugin" />
+    <access origin="https://m.facebook.com" />
+    <access origin="https://graph.facebook.com" />
+    <access origin="https://api.facebook.com" />
+    <access origin="https://*.fbcdn.net" />
+    <access origin="https://*.akamaihd.net" />
+    <feature name="File">
+        <param name="ios-package" value="CDVFile" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FileTransfer">
+        <param name="ios-package" value="CDVFileTransfer" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="Globalization">
+        <param name="ios-package" value="CDVGlobalization" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
+    <feature name="Capture">
+        <param name="ios-package" value="CDVCapture" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Vibration">
+        <param name="ios-package" value="CDVVibration" />
+    </feature>
+    <feature name="SQLitePlugin">
+        <param name="ios-package" value="SQLitePlugin" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="ios-package" onload="true" value="APPLocalNotification" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GooglePlus">
+        <param name="ios-package" value="GooglePlus" />
+        <param name="onload" value="true" />
+    </feature>
+    <access origin="https://accounts.google.com/*" />
+    <feature name="TwitterConnect">
+        <param name="ios-package" value="TwitterConnect" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="CDVKeyboard" />
+    </feature>
+    <name>Estays</name>
+    <description>Book, Pay, Enjoy your stay</description>
+    <author email="support@phonegap.com" href="http://phonegap.com">PhoneGap Team</author>
+    <content src="index.html" />
+    <gap:plugin name="twitter-connect-plugin" source="pgb" spec="0.5.0">
+        <param name="FABRIC_KEY" value="452b22294a74f5bed2eb28b973ef20fa7d3550fb" />
+    </gap:plugin>
+    <gap:plugin source="git" spec="https://github.com/EddyVerbruggen/cordova-plugin-googleplus.git">
+        <param name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.6747841157-e9np87eko1avl53qjvgise91ngv6u0c2" />
+    </gap:plugin>
+    <icon src="icon.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon height="180" src="www/res/icon/ios/180.png" width="180" />
+    <icon height="60" src="www/res/icon/ios/60.png" width="60" />
+    <icon height="120" src="www/res/icon/ios/120.png" width="120" />
+    <icon height="76" src="www/res/icon/ios/72.png" width="76" />
+    <icon height="152" src="www/res/icon/ios/180.png" width="152" />
+    <icon height="40" src="www/res/icon/ios/57.png" width="40" />
+    <icon height="80" src="www/res/icon/ios/72.png" width="80" />
+    <icon height="57" src="www/res/icon/ios/57.png" width="57" />
+    <icon height="114" src="www/res/icon/ios/114.png" width="114" />
+    <icon height="72" src="www/res/icon/ios/72.png" width="72" />
+    <icon height="144" src="www/res/icon/ios/120.png" width="144" />
+    <icon height="29" src="www/res/icon/ios/57.png" width="29" />
+    <icon height="58" src="www/res/icon/ios/57.png" width="58" />
+    <icon height="50" src="www/res/icon/ios/57.png" width="50" />
+    <icon height="100" src="www/res/icon/ios/114.png" width="100" />
+    <splash height="1136" platform="ios" src="www/img/logo.png" width="640" />
+    <splash height="1334" platform="ios" src="www/img/logo.png" width="750" />
+    <splash height="2208" platform="ios" src="www/img/logo.png" width="1242" />
+    <splash height="1242" platform="ios" src="www/img/logo.png" width="2208" />
+    <splash height="1536" platform="ios" src="www/img/logo.png" width="2048" />
+    <splash height="768" platform="ios" src="www/img/logo.png" width="1024" />
+    <splash height="2048" platform="ios" src="www/img/logo.png" width="1536" />
+    <splash height="960" platform="ios" src="www/img/logo.png" width="640" />
+    <splash height="480" platform="ios" src="www/img/logo.png" width="320" />
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <preference name="CameraUsesGeolocation" value="false" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="android-minSdkVersion" value="15" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="KeyboardShrinksView" value="false" />
+    <preference name="orientation" value="portrait" />
+    <preference name="TwitterConsumerKey" value="7NePR7tsnThW42g2eFg0WlipN" />
+    <preference name="TwitterConsumerSecret" value="QGoFzCPYwKwgmz0Rj96dJreebg5XzyeRKu43yIhVJWSVmaExPC" />
+</widget>

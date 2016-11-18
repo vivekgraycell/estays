@@ -72,32 +72,100 @@ function checkConnection() {
     return states[networkState];
 }
 function backButton(){
-    navigator.app.backHistory();
+    history.go(-1);navigator.app.backHistory();
 }
 
 
 function validationCheck(){
 	if(document.getElementById("registration_user_name").value == ""){
-		alert("Username cannot be left blank.");
+        
+        navigator.notification.alert(
+                                     'Username cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else if(document.getElementById("registration_user_email").value == ""){
-		alert("Email address cannot be left empty.");
+        navigator.notification.alert(
+                                     'Email address cannot be left empty.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
 	}else if(document.getElementById("registration_password").value == ""){
-		alert("Password cannot be left blank.");
+        navigator.notification.alert(
+                                     'Password cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else if(document.getElementById("registration_confirm_password").value == ""){
-		alert("Confirm password cannot be left blank.");
+        
+        navigator.notification.alert(
+                                     'Confirm password cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else if(document.getElementById("registration_phone").value == ""){
-		alert("Phone number cannot be left blank.");
+        
+        navigator.notification.alert(
+                                     'Phone number cannot be left blank.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else if(document.getElementById("registration_phone").value.length > 10){
-		alert("Phone number needs to be of 10 digits only.")
+        navigator.notification.alert(
+                                     'Phone number needs to be of 10 digits only.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else if (document.getElementById("registration_password").value != document.getElementById("registration_confirm_password").value){
-		alert("Password does not match.");
+        navigator.notification.alert(
+                                     'Password does not match.',  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
+        return false;
+        
 	}else{
 		var deviceid = window.localStorage.getItem("user_device_Id");
 		var devicetype = window.localStorage.getItem("user_device_type");
 		
 			networkState = checkConnection();
 			if (networkState == 'No network connection') {
-				alert("Please check your internet connection.");
+                
+                navigator.notification.alert(
+                                             'Please check your internet connection.',  // message
+                                             function(){},         // callback
+                                             'Alert',            // title
+                                             'OK'                  // buttonName
+                                             );
+                
+                return false;
+                
+                
 			}else{
 	    	var data = {userName:document.getElementById("registration_user_name").value , userEmail:document.getElementById("registration_user_email").value , userPassword:document.getElementById("registration_password").value, userMobile:document.getElementById("registration_phone").value, deviceId:window.localStorage.getItem("user_device_Id"), deviceType:window.localStorage.getItem("user_device_type")};
 		$.ajax({
@@ -202,7 +270,14 @@ function validationCheck(){
 			error : function(xhr) {
 				document.getElementById("loadingimg").style.display = "none";
 				var jsonResponse = JSON.parse(xhr.responseText);
-				alert(jsonResponse.message);
+               
+               navigator.notification.alert(
+                                            jsonResponse.message,  // message
+                                            function(){},         // callback
+                                            'Alert',            // title
+                                            'OK'                  // buttonName
+                                            );
+               
 			}
 		});
 	    }
@@ -224,64 +299,111 @@ function bookingFoot(){
 }
 
 function changeLanguageBtn(){
-	if(confirm("Change language to Arabic.") == true){
-		//Ok button clicked.
-		window.localStorage.setItem("selectedLanguage", "Arb");
-		window.location.replace("../arabic/inapp-registration.html");
-	}else{
-		//Cancel button clicked.
-	}
+    navigator.notification.confirm(
+                                   'Change language to Arabic.',  // message
+                                   function(buttonIndex){
+                                   
+                                   switch (buttonIndex)
+                                   {
+                                   case 0:
+                                   break;
+                                   case 1:
+                                   window.localStorage.setItem("selectedLanguage", "Arb");
+                                   window.location.replace("../arabic/search.html");
+                                   break;}
+                                   
+                                   },         // callback
+                                   'Alert',            // title
+                                   ['Confirm'  ,'Cancel']
+                                   // buttonName
+                                   );
 }
 
 function logoutUser(){
-	var lsItem = window.localStorage.getItem("user_user_id");
-
-	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-		//User not login. Show error dialog.
-		alert("Unable to perform operation as user is not currently loggedIn.");
-	}else{
-		//User is login. Continue login
-		
-		if(confirm("Are you sure you want to logout?") == true){
-			//Ok button clicked
-			
-			networkState = checkConnection();
-			if (networkState == 'No network connection') {
-				alert("Please check your internet connection.");
-			}else{
-		    	var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
-			$.ajax({
-				type : 'POST',
-				url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
-				beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-				crossDomain : true,
-				data : JSON.stringify(data),
-				dataType : 'json',
-				contentType: "application/json",
-				success : function(data){
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+data.message);
-					window.localStorage.removeItem("user_user_id");
-					var prflImgPath = window.localStorage.getItem("profileImgPath");
-					if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
-					}else{
-						window.localStorage.removeItem("profileImgPath");
-					}
-				},error : function(xhr) {
-					var jsonResponse = JSON.parse(xhr.responseText);
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+jsonResponse.message);
-				}
-			});
-		    }
-			
-			
-			
-		}else{
-			//Cancel button clicked
-			//Do nothing.
-		}
-	}
+    var lsItem = window.localStorage.getItem("user_user_id");
+    if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+        //User not login. Show error dialog.
+        window.localStorage.setItem("SearchPage", "Yes");
+        window.open("register.html");
+    }else{
+        //User is login. Continue login
+        
+        
+        navigator.notification.confirm(
+                                       'Are you sure you want to logout?',  // message
+                                       function(buttonIndex){
+                                       
+                                       switch (buttonIndex)
+                                       {
+                                       case 0:
+                                       break;
+                                       case 1:
+                                       
+                                       //Ok button clicked
+                                       networkState = checkConnection();
+                                       if (networkState == 'No network connection') {
+                                       navigator.notification.alert(
+                                                                    'Please check your internet connection.',  // message
+                                                                    function(){},         // callback
+                                                                    'Alert',            // title
+                                                                    'OK'                  // buttonName
+                                                                    );
+                                       return false;
+                                       }else{
+                                       var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
+                                       $.ajax({
+                                              type : 'POST',
+                                              url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
+                                              beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+                                              crossDomain : true,
+                                              data : JSON.stringify(data),
+                                              dataType : 'json',
+                                              contentType: "application/json",
+                                              success : function(data){
+                                              document.getElementById("logoutbtn").innerHTML = "Login";
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              
+                                              navigator.notification.alert(
+                                                                           ""+data.message,  // message
+                                                                           function(){
+                                                                           
+                                                                           window.localStorage.removeItem("user_user_id");
+                                                                           var prflImgPath = window.localStorage.getItem("profileImgPath");
+                                                                           if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
+                                                                           }else{
+                                                                           window.localStorage.removeItem("profileImgPath");
+                                                                           }
+                                                                           
+                                                                           },         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              },error : function(xhr) {
+                                              var jsonResponse = JSON.parse(xhr.responseText);
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              navigator.notification.alert(
+                                                                           ""+jsonResponse.message,  // message
+                                                                           function(){},         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              }
+                                              });
+                                       }
+                                       
+                                       break;
+                                       
+                                       }
+                                       
+                                       },         // callback
+                                       'Alert',            // title
+                                       ['Confirm'  ,'Cancel']
+                                       // buttonName
+                                       );
+        
+    }
 }
 
 function changecurrencyUSD(){

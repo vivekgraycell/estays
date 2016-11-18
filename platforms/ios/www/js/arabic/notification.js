@@ -6,32 +6,42 @@ var currentMinutes = 0;
 var currentSeconds = 0;
 
 function onDeviceReady(){
-var selectedLng = window.localStorage.getItem("selectedLanguage");
+	
+	
+	
+	var selectedLng = window.localStorage.getItem("selectedLanguage");
 	
 	if (selectedLng == "Eng"){
 		window.location.replace("../english/notification.html");
 	}else{
 		newNotificationCheck();
-//		var networkState = navigator.network.connection.type;
-//
-//	    var states = {};
-//	    states[Connection.UNKNOWN]  = 'Unknown connection';
-//	    states[Connection.ETHERNET] = 'Ethernet connection';
-//	    states[Connection.WIFI]     = 'WiFi connection';
-//	    states[Connection.CELL_2G]  = 'Cell 2G connection';
-//	    states[Connection.CELL_3G]  = 'Cell 3G connection';
-//	    states[Connection.CELL_4G]  = 'Cell 4G connection';
-//	    states[Connection.NONE]     = 'No network connection';
-//
-////	    alert("networkState "+networkState);
-//
-//	    if (networkState == 'unknown' || networkState == 'none') {
-//	    	alert("Please check your internet connection.");
-//	    }else{
-//	    	var oneHourTime = window.localStorage.getItem("one_hour_past");
+//		var oneHourTime = window.localStorage.getItem("one_hour_past");
+//		
+//		if(oneHourTime === undefined || oneHourTime === null || oneHourTime.length === 0){
 //			
-//			if(oneHourTime === undefined || oneHourTime === null || oneHourTime.length === 0){
-//				
+//			var lsItem = window.localStorage.getItem("user_user_id");
+//			if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+////				alert("Unable to perform operation as user is not currently loggedIn.");
+//				window.localStorage.setItem("NotificationPage", "Yes");
+//				window.open("register.html");
+//			}else{
+//				var timerDiv = document.getElementById("notification_timer_div");
+//				timerDiv.style.display = 'none';
+//				var notificationSecondRow = document.getElementById("notification_second_row");
+//				notificationSecondRow.style.display = 'none';
+//				var notificationTopRow = document.getElementById("notification_top_row");
+//				notificationTopRow.style.display = 'none';
+//				document.getElementById("emptylistTV").innerHTML = "No record available";
+//			}
+//		}else{
+//			var oneHourTimeFormat = new Date(oneHourTime).getTime();
+//			
+//			var currentTime = new Date().getTime();
+//			
+//			console.log("oneHourTimeFormat : "+oneHourTimeFormat+"   currentTime : "+currentTime);
+//			
+//			if(currentTime < oneHourTimeFormat){
+//				//Current time is less than one hour time
 //				var lsItem = window.localStorage.getItem("user_user_id");
 //				if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
 ////					alert("Unable to perform operation as user is not currently loggedIn.");
@@ -44,85 +54,79 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 //					notificationSecondRow.style.display = 'none';
 //					var notificationTopRow = document.getElementById("notification_top_row");
 //					notificationTopRow.style.display = 'none';
-//					document.getElementById("emptylistTV").innerHTML = "No record available";
+//					document.getElementById("emptylistTV").innerHTML = "No Record Found";
 //				}
 //			}else{
-//				var oneHourTimeFormat = new Date(oneHourTime).getTime();
-//				
-//				var currentTime = new Date().getTime();
-//				
-//				console.log("oneHourTimeFormat : "+oneHourTimeFormat+"   currentTime : "+currentTime);
-//				
-//				if(currentTime < oneHourTimeFormat){
-//					//Current time is less than one hour time
-//					var lsItem = window.localStorage.getItem("user_user_id");
-//					if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-////						alert("Unable to perform operation as user is not currently loggedIn.");
-//						window.localStorage.setItem("NotificationPage", "Yes");
-//						window.open("register.html");
-//					}else{
-//						var timerDiv = document.getElementById("notification_timer_div");
-//						timerDiv.style.display = 'none';
-//						var notificationSecondRow = document.getElementById("notification_second_row");
-//						notificationSecondRow.style.display = 'none';
-//						var notificationTopRow = document.getElementById("notification_top_row");
-//						notificationTopRow.style.display = 'none';
-//						document.getElementById("emptylistTV").innerHTML = "No Record Found";
-//					}
+//				//Current time is greater than one hour time
+//				var previousMins = window.localStorage.getItem("currentMin");
+//				if(previousMins === undefined || previousMins === null || previousMins.length === 0){
+//					sampleNotificationHit();
 //				}else{
-//					//Current time is greater than one hour time
-//					var previousMins = window.localStorage.getItem("currentMin");
-//					if(previousMins === undefined || previousMins === null || previousMins.length === 0){
-//						sampleNotificationHit();
-//					}else{
-//						var intpm = parseInt(previousMins);
+//					var intpm = parseInt(previousMins);
+//					
+//					if(intpm > 29){
 //						
-//						if(intpm > 29){
-//							
-//							var lsItem = window.localStorage.getItem("user_user_id");
-//							if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-////								alert("Unable to perform operation as user is not currently loggedIn.");
-//								window.localStorage.setItem("NotificationPage", "Yes");
-//								window.open("register.html");
-//							}else{
-//								var timerDiv = document.getElementById("notification_timer_div");
-//								timerDiv.style.display = 'none';
-//								var notificationSecondRow = document.getElementById("notification_second_row");
-//								notificationSecondRow.style.display = 'none';
-//								var notificationTopRow = document.getElementById("notification_top_row");
-//								notificationTopRow.style.display = 'none';
-//								document.getElementById("emptylistTV").innerHTML = "No Record Found";
-//								window.localStorage.removeItem("notification_count_int");
-//							}
+//						var lsItem = window.localStorage.getItem("user_user_id");
+//						if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+////							alert("Unable to perform operation as user is not currently loggedIn.");
+//							window.localStorage.setItem("NotificationPage", "Yes");
+//							window.open("register.html");
 //						}else{
-//							sampleNotificationHit();
+//							var timerDiv = document.getElementById("notification_timer_div");
+//							timerDiv.style.display = 'none';
+//							var notificationSecondRow = document.getElementById("notification_second_row");
+//							notificationSecondRow.style.display = 'none';
+//							var notificationTopRow = document.getElementById("notification_top_row");
+//							notificationTopRow.style.display = 'none';
+//							document.getElementById("emptylistTV").innerHTML = "No Record Found";
+//							window.localStorage.removeItem("notification_count_int");
 //						}
+//					}else{
+//						sampleNotificationHit();
 //					}
 //				}
 //			}
-			
-	    	/*var previousMins = window.localStorage.getItem("currentMin");
-			if(previousMins === undefined || previousMins === null || previousMins.length === 0){
-				sampleNotificationHit();
-			}else{
-				var intpm = parseInt(previousMins);
-				
-				if(intpm > 29){
-					var timerDiv = document.getElementById("notification_timer_div");
-					timerDiv.style.display = 'none';
-					var notificationSecondRow = document.getElementById("notification_second_row");
-					notificationSecondRow.style.display = 'none';
-					var notificationTopRow = document.getElementById("notification_top_row");
-					notificationTopRow.style.display = 'none';
-					document.getElementById("emptylistTV").innerHTML = "No Record Found";
-				}else{
-					sampleNotificationHit();
+//			
+//			/*if(oneHourTimeFormat > currentTime){
+//				var previousMins = window.localStorage.getItem("currentMin");
+//				if(previousMins === undefined || previousMins === null || previousMins.length === 0){
+//					sampleNotificationHit();
+//				}else{
+//					
+//				}
+//			}else{
+//				var timerDiv = document.getElementById("notification_timer_div");
+//				timerDiv.style.display = 'none';
+//				var notificationSecondRow = document.getElementById("notification_second_row");
+//				notificationSecondRow.style.display = 'none';
+//				var notificationTopRow = document.getElementById("notification_top_row");
+//				notificationTopRow.style.display = 'none';
+//				document.getElementById("emptylistTV").innerHTML = "No Record Found";
+//			}*/
+//			
+//		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+				networkState = checkConnection();
+				if (networkState == 'No network connection') {
+                    navigator.notification.alert(
+                                                 'Please check your internet connection.',  // message
+                                                 function(){},         // callback
+                                                 'Alert',            // title
+                                                 'OK'                  // buttonName
+                                                 );
+                    
+                    return false;				}else{
+	    	
 				}
-			}*/
-	    	
-	    	
-//	    	sampleNotificationHit();
-//	    }
+		
 		
 		/*var lsItem = window.localStorage.getItem("user_user_id");
 
@@ -130,7 +134,6 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 			//User not login. Show error dialog.
 			alert("Unable to perform operation as user is not currently loggedIn.");
 		}else{
-		
 			var data = {userId:lsItem, offset:'0'};
 		$.ajax({
 			type: 'POST',
@@ -147,14 +150,13 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 					if(hotelNotifications.status == "Approve"){
 						document.getElementById("notificDate").innerHTML = hotelNotifications.date;
 						document.getElementById("num_rooms").innerHTML = hotelNotifications.numberOfRooms;
-						$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelNameArabic+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+						$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelName+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
 						$.each(hotels.roomType, function(index, roomType){
-							document.getElementById("ntfication_room_type").innerHTML = roomType.roomCategoryArab;
+							document.getElementById("ntfication_room_type").innerHTML = roomType.roomCategory;
 						});
 						$.each(hotels.hotelType, function(index, hotelType){
-							document.getElementById("ntfication_hotel_type").innerHTML = hotelType.hotelTypeArab;
-						});													
-																																																																		
+							document.getElementById("ntfication_hotel_type").innerHTML = hotelType.hotelType;
+						});																																																											
 //					$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +"><div class='boderBottom'><div class='col-xs-12'><div class='image'><img src='../../img/img01.jpg' alt=''></div><div class='desc'> <a href='javascript:void(0)' class='yellowLink'>"+ "Double room"+"</a><div class='clearfix'></div><div class='title margbot'>"+hotelNotifications.DateCreated+"</div><div class='text'>"+hotelNotifications.hotelName+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/arrow.png' alt=''></a></div></div></div></li>");
 					}
 					"hotelNotifications": [4]
@@ -193,10 +195,8 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 				
 				var fiveMinutes = 60.0 * 30, display = document.querySelector('#countdown');
 				startTimer(fiveMinutes, display);
-				document.getElementById("loadingimg").style.display = "none";
 				$('#hotelList').listview('refresh');
 				document.getElementById("loadingimg").style.display = "none";
-				
 
 				$("#hotelList").on("click", "li", function(){
 	                    //get hotel id
@@ -205,6 +205,8 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 	                    window.localStorage.setItem("clicked_hotel_id", id);
 	                    window.open("hoteldetailpage.html");
 	                });
+				
+				document.getElementById("loadingimg").style.display = "none";
 			},
 			error: function(xhr){
 				console.log(xhr.responseText);
@@ -247,7 +249,21 @@ var selectedLng = window.localStorage.getItem("selectedLanguage");
 		document.getElementById("logoutbtn").innerHTML = "خروج";
 	}
 }
+function checkConnection() {
+    var networkState = navigator.connection.type;
 
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    return states[networkState];
+}
 function Decrement(){
 	currentMinutes = Math.floor(secs / 60);
     currentSeconds = secs % 60;
@@ -264,85 +280,144 @@ function startTimer(duration, display) {
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
+        
+        var oldMin = window.localStorage.getItem("countdownMin");
+        var oldSec = window.localStorage.getItem("countdownSec");
+        
+        if(oldMin === undefined || oldMin === null || oldMin.length === 0){
+        	minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+        }else{
+        	minutes = oldMin;
+        	seconds = oldSec;
+        	minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+        }
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
+        /*minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;*/
+        
+        console.log("min "+minutes+" sec "+seconds);
+        
         display.textContent = "00:"+ minutes + ":" + seconds;
+    	
+    	window.localStorage.setItem("countdownMin", minutes);
+        window.localStorage.setItem("countdownSec", seconds);
+        
+        
+       /* console.log("oldMin "+oldMin+" oldSec "+oldSec);
+        
+        if(oldMin === undefined || oldMin === null || oldMin.length === 0){
+        	display.textContent = "00:"+ minutes + ":" + seconds;
+        	
+        	window.localStorage.setItem("countdownMin", minutes);
+            window.localStorage.setItem("countdownSec", seconds);
+        }else{
+        	display.textContent = "00:"+ oldMin + ":" + oldSec;
+        	
+        	window.localStorage.setItem("countdownMin", oldMin);
+            window.localStorage.setItem("countdownSec", oldSec);
+        }*/
+        
+        
+        
 
         if (--timer < 0) {
             timer = duration;
+            
         }
     }, 1000);
 }
 
 function backButton(){
-    navigator.app.backHistory();
+    history.go(-1);navigator.app.backHistory();
 }
 
 function logoutUser(){
-	var lsItem = window.localStorage.getItem("user_user_id");
-
-	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
-		//User not login. Show error dialog.
-//		alert("Unable to perform operation as user is not currently loggedIn.");
-		window.localStorage.setItem("NotificationPage", "Yes");
-		window.open("register.html");
-	}else{
-		//User is login. Continue login
-		
-		if(confirm("Are you sure you want to logout?") == true){
-			//Ok button clicked
-			var networkState = navigator.network.connection.type;
-
-		    var states = {};
-		    states[Connection.UNKNOWN]  = 'Unknown connection';
-		    states[Connection.ETHERNET] = 'Ethernet connection';
-		    states[Connection.WIFI]     = 'WiFi connection';
-		    states[Connection.CELL_2G]  = 'Cell 2G connection';
-		    states[Connection.CELL_3G]  = 'Cell 3G connection';
-		    states[Connection.CELL_4G]  = 'Cell 4G connection';
-		    states[Connection.NONE]     = 'No network connection';
-
-//		    alert("networkState "+networkState);
-
-		    if (networkState == 'unknown' || networkState == 'none') {
-		    	alert("Please check your internet connection.");
-		    }else{
-		    	var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
-			$.ajax({
-				type : 'POST',
-				url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
-				beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
-				crossDomain : true,
-				data : JSON.stringify(data),
-				dataType : 'json',
-				contentType: "application/json",
-				success : function(data){
-					document.getElementById("logoutbtn").innerHTML = "تسجيل الدخول";
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+data.message);
-					window.localStorage.removeItem("user_user_id");
-					var prflImgPath = window.localStorage.getItem("profileImgPath");
-					if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
-					}else{
-						window.localStorage.removeItem("profileImgPath");
-					}
-					window.location.replace("search.html");
-				},error : function(xhr) {
-					var jsonResponse = JSON.parse(xhr.responseText);
-					document.getElementById("loadingimg").style.display = "none";
-					alert(""+jsonResponse.message);
-				}
-			});
-		    }
-			
-			
-		}else{
-			//Cancel button clicked
-			//Do nothing.
-		}
-	}
+    var lsItem = window.localStorage.getItem("user_user_id");
+    if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
+        //User not login. Show error dialog.
+        window.localStorage.setItem("SearchPage", "Yes");
+        window.open("register.html");
+    }else{
+        //User is login. Continue login
+        
+        
+        navigator.notification.confirm(
+                                       'Are you sure you want to logout?',  // message
+                                       function(buttonIndex){
+                                       
+                                       switch (buttonIndex)
+                                       {
+                                       case 0:
+                                       break;
+                                       case 1:
+                                       
+                                       //Ok button clicked
+                                       networkState = checkConnection();
+                                       if (networkState == 'No network connection') {
+                                       navigator.notification.alert(
+                                                                    'Please check your internet connection.',  // message
+                                                                    function(){},         // callback
+                                                                    'Alert',            // title
+                                                                    'OK'                  // buttonName
+                                                                    );
+                                       return false;
+                                       }else{
+                                       var data = {userId:window.localStorage.getItem("user_user_id") , deviceId:window.localStorage.getItem("user_device_Id")};
+                                       $.ajax({
+                                              type : 'POST',
+                                              url : 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/logout',
+                                              beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
+                                              crossDomain : true,
+                                              data : JSON.stringify(data),
+                                              dataType : 'json',
+                                              contentType: "application/json",
+                                              success : function(data){
+                                              document.getElementById("logoutbtn").innerHTML = "تسجيل الدخول";
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              
+                                              navigator.notification.alert(
+                                                                           ""+data.message,  // message
+                                                                           function(){
+                                                                           
+                                                                           window.localStorage.removeItem("user_user_id");
+                                                                           var prflImgPath = window.localStorage.getItem("profileImgPath");
+                                                                           if(prflImgPath === undefined || prflImgPath === null || prflImgPath.length === 0){
+                                                                           }else{
+                                                                           window.localStorage.removeItem("profileImgPath");
+                                                                           }
+                                                                           
+                                                                           },         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              },error : function(xhr) {
+                                              var jsonResponse = JSON.parse(xhr.responseText);
+                                              document.getElementById("loadingimg").style.display = "none";
+                                              navigator.notification.alert(
+                                                                           ""+jsonResponse.message,  // message
+                                                                           function(){},         // callback
+                                                                           'Alert',            // title
+                                                                           'OK'                  // buttonName
+                                                                           );
+                                              
+                                              }
+                                              });
+                                       }
+                                       
+                                       break;
+                                       
+                                       }
+                                       
+                                       },         // callback
+                                       'Alert',            // title
+                                       ['Confirm'  ,'Cancel']
+                                       // buttonName
+                                       );
+        
+    }
 }
 
 function fetchnotificationlist(){
@@ -350,14 +425,20 @@ function fetchnotificationlist(){
 
 	if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
 		//User not login. Show error dialog.
-		alert("Unable to perform operation as user is not currently loggedIn.");
+        navigator.notification.alert(
+                                     "Unable to perform operation as user is not currently loggedIn.",  // message
+                                     function(){},         // callback
+                                     'Alert',            // title
+                                     'OK'                  // buttonName
+                                     );
+        
 	}else{
 	$.ajax({
 		type: 'GET',
 		url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/hotelNotifications',
 		beforeSend: function(){document.getElementById("loadingimg").style.display = "block";},
 		crossDomain: true,
-		data: {userId:'1', offset:'0'},
+		data: {userId:window.localStorage.getItem("user_user_id"), offset:'0'},
 		dataType : 'json',
 		contentType: "application/json",
 		success: function(data){
@@ -400,7 +481,6 @@ function fetchnotificationlist(){
                 window.localStorage.setItem("hotel_book_id", id);
                 window.open("hotel-detail.html");
             });
-			document.getElementById("loadingimg").style.display = "none";
 			/*$('#hotelList').listview('refresh');
 			document.getElementById("loadingimg").style.display = "none";
 
@@ -411,12 +491,20 @@ function fetchnotificationlist(){
                     window.localStorage.setItem("clicked_hotel_id", id);
                     window.open("hoteldetailpage.html");
                 });*/
+			
+			document.getElementById("loadingimg").style.display = "none";
 		},
 		error: function(xhr){
 			console.log(xhr.responseText);
 			var jsonResponse = JSON.parse(xhr.responseText);
 			document.getElementById("loadingimg").style.display = "none";
-			alert("Error  : "+jsonResponse.message);
+           navigator.notification.alert(
+                                        "Error  : "+jsonResponse.message,  // message
+                                        function(){},         // callback
+                                        'Alert',            // title
+                                        'OK'                  // buttonName
+                                        );
+           
 			
 			var wrapper_div = $("#pstbookingdiv");
 			$(wrapper_div).append("<span style='vertical-align: middle;width:100%;color: #000000;'>"+jsonResponse.message+"</span>");
@@ -428,13 +516,24 @@ function fetchnotificationlist(){
 }
 
 function changeLanguageBtn(){
-	if(confirm("Change language to English.") == true){
-		//Ok button clicked.
-		window.localStorage.setItem("selectedLanguage", "Eng");
-		window.location.replace("../english/notification.html");
-	}else{
-		//Cancel button clicked.
-	}
+    navigator.notification.confirm(
+                                   'Change language to English.',  // message
+                                   function(buttonIndex){
+                                   
+                                   switch (buttonIndex)
+                                   {
+                                   case 0:
+                                   break;
+                                   case 1:
+                                   window.localStorage.setItem("selectedLanguage", "Eng");
+                                   window.location.replace("../english/search.html");
+                                   break;}
+                                   
+                                   },         // callback
+                                   'Alert',            // title
+                                   ['Confirm'  ,'Cancel']
+                                   // buttonName
+                                   );
 }
 
 function openProfileFoot(){
@@ -477,7 +576,6 @@ var defCurrency = window.localStorage.getItem("currencyType");
 	}
 }
 
-
 function sampleNotificationHit(){
 	var isTimerStarted = window.localStorage.getItem("timerStarted");
 	
@@ -507,10 +605,13 @@ function sampleNotificationHit(){
 		if (lsItem === undefined || lsItem === null || lsItem.length === 0) {
 			//User not login. Show error dialog.
 //			alert("Unable to perform operation as user is not currently loggedIn.");
+			
 			window.localStorage.setItem("NotificationPage", "Yes");
 			window.open("register.html");
+			
 		}else{
 			var data = {userId:lsItem, offset:'0'};
+			console.log("user_id", lsItem);
 			$.ajax({
 				type: 'POST',
 				url: 'http://myprojectdemonstration.com/development/estays/demo/api/mobileapi/hotelNotifications',
@@ -525,15 +626,16 @@ function sampleNotificationHit(){
 					var firstOffset = data.offset;
 					var countNotif = 0;
 					$.each(hotels, function(index, hotelNotifications) {
-						if(hotelNotifications.status == "Approve"){
-							countNotif++;
+							if(hotelNotifications.status == "Approve"){
 							var timerDiv = document.getElementById("notification_timer_div");
 							timerDiv.style.display = 'block';
 							var notificationSecondRow = document.getElementById("notification_second_row");
 							notificationSecondRow.style.display = 'block';
 							var notificationTopRow = document.getElementById("notification_top_row");
 							notificationTopRow.style.display = 'block';
+							countNotif++;
 							
+							//Testing code
 							var monthNames = [
 							                  "January", "February", "March",
 							                  "April", "May", 'June', "July",
@@ -547,36 +649,39 @@ function sampleNotificationHit(){
 							                var year = date.getFullYear();
 
 							                var finalDate = day + ' ' + monthNames[monthIndex] + ' ' + year;
-							                var noImge = '../../img/no_image.jpg';
+							//Ends
+							
+							
 							document.getElementById("notificDate").innerHTML = finalDate;
+							window.localStorage.setItem("notification_hotel_date", hotelNotifications.date);
 							document.getElementById("num_rooms").innerHTML = hotelNotifications.numberOfRooms;
 							
-							window.localStorage.setItem("notification_hotel_date", hotelNotifications.date);
-							$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelNameArabic+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+							for(var i = 0; i < hotelNotifications.roomType.length; i++){
+								document.getElementById("ntfication_room_type").innerHTML = hotelNotifications.roomType[0].roomCategory;
+							}
+							
+							for(var j = 0; j < hotelNotifications.hotelType.length; j++){
+								document.getElementById("ntfication_hotel_type").innerHTML = hotelNotifications.hotelType[0].hotelType;
+							}
+							
+							/*$.each(data.hotelNotifications.roomType, function(index, roomType){
+								document.getElementById("ntfication_room_type").innerHTML = roomType.roomCategory;
+							});
+							$.each(data.hotelNotifications.hotelType, function(index, hotelType){
+								document.getElementById("ntfication_hotel_type").innerHTML = hotelType.hotelType;
+							});*/
+							var noImge = '../../img/no_image.jpg';
+							$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelName+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
 							
 							$('img')
 							.error(function(){
 								this.src = '../../img/no_image.jpg';
 							});
 							
-							for(var i = 0; i < hotelNotifications.roomType.length; i++){
-								document.getElementById("ntfication_room_type").innerHTML = hotelNotifications.roomType[0].roomCategoryArab;
-							}
-							
-							for(var j = 0; j < hotelNotifications.hotelType.length; j++){
-								document.getElementById("ntfication_hotel_type").innerHTML = hotelNotifications.hotelType[0].hotelTypeArab;
-							}
-							
-							
-							/*$.each(data.hotelNotifications.roomType, function(index, roomType){
-								document.getElementById("ntfication_room_type").innerHTML = roomType.roomCategoryArab;
-							});
-							$.each(data.hotelNotifications.hotelType, function(index, hotelType){
-								document.getElementById("ntfication_hotel_type").innerHTML = hotelType.hotelTypeArab;
-							});*/
 //							$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +"><div class='boderBottom'><div class='col-xs-12'><div class='image'><img src='../../img/img01.jpg' alt=''></div><div class='desc'> <a href='javascript:void(0)' class='yellowLink'>"+ "Double room"+"</a><div class='clearfix'></div><div class='title margbot'>"+hotelNotifications.DateCreated+"</div><div class='text'>"+hotelNotifications.hotelName+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/arrow.png' alt=''></a></div></div></div></li>");
-						}else{
-							document.getElementById("emptylistTV").innerHTML = "No hotel accept your bid amount. Please check website for more information."
+						}
+						else{
+							document.getElementById("emptylistTV").innerHTML = "Sorry no user accepted your bid! Please make another bidding or make a reservation via the website i.e. http://estays-sa.com";
 						}
 					});
 					
@@ -621,11 +726,11 @@ function sampleNotificationHit(){
 											var noImge = '../../img/no_image.jpg';
 											
 											$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelName+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+											
 											$('img')
 											.error(function(){
 												this.src = '../../img/no_image.jpg';
 											});	
-										
 										}
 									});
 									
@@ -644,11 +749,20 @@ function sampleNotificationHit(){
 						}
 					});
 					
+					
 					var timerDiv = document.getElementById("notification_timer_div");
 					timerDiv.style.display = 'block';
 					
-					/*var fiveMinutes = 60.0 * 30, display = document.querySelector('#countdown');
-					startTimer(fiveMinutes, display);*/
+					/*var minCovered = window.localStorage.getItem("min_covered");
+					
+					var newMinCovered;
+					
+					if(minCovered === minCovered || minCovered === null || minCovered.length === 0){
+						newMinCovered = 0;
+					}else{
+						newMinCovered = minCovered;
+					}*/
+					
 					
 					mins = 30;
 					var previousMins = window.localStorage.getItem("currentMin");
@@ -665,7 +779,11 @@ function sampleNotificationHit(){
 					
 					setTimeout(Decrement,1000);
 					
+//					var fiveMinutes = 60.0 * 30, display = document.querySelector('#countdown');
+//					startTimer(fiveMinutes, display);
 					document.getElementById("loadingimg").style.display = "none";
+					
+					
 					
 					//Get current device time.
 					//Add 28 minutes to current device time.
@@ -797,7 +915,7 @@ function newNotificationCheck(){
 						notificationTopRow.style.display = 'none';
 						document.getElementById("emptylistTV").innerHTML = "No Records Found";
 					}else{
-						console.log("code else section intValueOfThirtyMinTimer == 09");
+						console.log("code else section intValueOfThirtyMinTimer == 0");
 						/**
 						 * 30 minute timer is not completed.
 						 * Call notification api and display remaining time
@@ -826,6 +944,7 @@ function getNotificationFromServer(){
 		success: function(data){
 			$('#notificationlisthotel li').remove();
 			hotels = data.hotelNotifications;
+          
 			var firstOffset = data.offset;
 			var countNotif = 0;
 			$.each(hotels, function(index, hotelNotifications) {
@@ -845,7 +964,7 @@ function getNotificationFromServer(){
 					                  "August", "September", "October",
 					                  "November", "December"
 					                ];
-					
+                  
 					var date = new Date(hotelNotifications.date);
 					var day = date.getDate();
 					var monthIndex = date.getMonth();
@@ -867,6 +986,7 @@ function getNotificationFromServer(){
 					
 					var noImge = '../../img/no_image.jpg';
 					$("#notificationlisthotel").append("<li data-hotelid="+ hotelNotifications.hotelId +" id="+ hotelNotifications.bidid + "><div class='boderBottom notifiationB'><div class='col-xs-12'><div class='image'><img style='width: 90px;height:90px;' src="+ hotelNotifications.hotelMainpic +" alt=''></div><div class='desc'><div class='title'>"+hotelNotifications.hotelName+"</div><div class='text'>"+ hotelNotifications.status+"</div></div><div class='linkarrow'><a href='javascript:void(0)'><img src='../../img/book.png' alt=''></a></div></div></div></li>");
+					
 					$('img')
 					.error(function(){
 						this.src = '../../img/no_image.jpg';
